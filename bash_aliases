@@ -87,13 +87,24 @@ rs_mv() {
 
 alias zls='zfs list -o name,used,referenced,canmount,mounted,mountpoint'
 
-zlm() {
+zlsm() {
+# zfs list mount - list datasets with canmount=on and/or currently mounted
     zfs list -o name,used,referenced,canmount,mounted,mountpoint $@ | egrep -e ' on ' -e ' yes '
 }
 
-zlz() {
-#NEEDS WORK FAILS WITH DIFFERENT TYPES AND RECURSIVE
-    zfs get -o name,property,value $@ all | egrep -e 'com\.ubuntu\.zsys'
+zlsz() {
+# zfs list zsys - show zsys custom properties of datasets (fs,snap,all)
+    if [ "$1" = "-t" ]; then
+        type="$2"
+        shift 2
+    else
+        type="filesystem"
+    fi
+    if [ "$1" = "-r" ]; then
+        recurs="-r"
+        shift 1
+    fi
+    zfs get $recurs -o name,property,value -t $type all "$@" | egrep -e 'com\.ubuntu\.zsys'
 }
 
 #### zfs list/get properties from name
@@ -122,7 +133,7 @@ zmt() {
         return
     fi
     zfs snapshot $fs@zmnt-$mp_`date -I`
-    if [ "$(zg_t $fs)" = "snapshot" || "$(zg_mp $fs)" = "legacy" ]; then
+    if [ "$(zg_t $fs)" = "snapshot" ] || [ "$(zg_mp $fs)" = "legacy" ]; then
         mount -t zfs $fs $mp
     else
         mount -o zfsutil -t zfs $fs $mp
@@ -193,13 +204,16 @@ zmaz() {
     else
         altr="/z"
     fi
-    zdist=$1
-    zroot=rpool/ROOT/$1
+    dist="$1"
+    zroot=rpool/ROOT/$dist
+    eval zma -R $altr -r rpool/ROOT/$dist
+    eval zmt bpool/BOOT/$dist $altr/$zroot/boot
+    eval zmt rpool/USERDATA/$dist $altr/$zroot/home
 }
 
 #### take a manual zfs snap of mounted datasets
 zsnap() {
-    dstamp=$(date +%Y%m%d.%H%M)
+    dstamp=$(date -I)
     if [ "$1" ]; then
         nom="$1-$dstamp"
     else
