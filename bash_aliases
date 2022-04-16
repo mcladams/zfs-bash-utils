@@ -22,7 +22,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -AlF'
+alias ll='ls -Al'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -38,26 +38,44 @@ alias deps='apt-cache depends --no-recommends --no-suggests --no-enhances'
 alias rdepr='apt-cache rdepends --no-suggests --no-enhances'
 alias depr='apt-cache depends --no-suggests --no-enhances'
 
-
 #### disk usage ####
 alias du1='du -cxhd1'
 alias du5='du -cxhd1 --all -t50M'
 
+#### general functions
+# list user functions defined
+# alternatively 'compgen -A function'
+alias flist='declare -F |cut -d" " -f3 |egrep -v "^_"'
+alias fdef='declare -f'
+
+pname_abs() {
+# pn_abs: get absolute pathname from relative
+    abspn=$(readlink -f `pwd`/$1)
+    filename=${abspn##*/}
+    path=${abspn%/*}
+    echo $abspn
+    #echo $path $filename
+}
+
 #### rsync ####
 
-rs_cp() { #copy-overwrite dest if different regardless
+rs_cp() {
+# copy-overwrite dest if different regardless
     rsync -hh --info=stats1,progress2 --modify-window=2 -aHAX "$@"
 }
 
-rs_up() { #copy-update do not overwrite newer on dest
+rs_up() {
+# copy-update do not overwrite newer on dest
     rsync -hh --info=stats1,progress2 --modify-window=2 -aHAX --update "$@"
 }
 
-rs_cl() { #copy-clone by removing extra dest files
+rs_cl() {
+# copy-clone by removing extra dest files
     rsync -hh --info=stats1,progress2 --modify-window=2 -aHAX --delete "$@"
 }
 
-rs_mv { #move by removing source files
+rs_mv() {
+# move by removing source files
     rsync -hh --info=stats1,progress2 --modify-window=2 -aHAX --remove-source-files "$@"
 }
 
@@ -74,6 +92,7 @@ zlm() {
 }
 
 zlz() {
+#NEEDS WORK FAILS WITH DIFFERENT TYPES AND RECURSIVE
     zfs get -o name,property,value $@ all | egrep -e 'com\.ubuntu\.zsys'
 }
 
@@ -98,12 +117,16 @@ zmt() {
         echo "Error: $mp exists and is not empty, not mounting"
         return
     fi
-    if [ $(zfs list -H -o canmount $fs) = off ]; then
+    if [ "$(zg_cm $fs)" = "off" ]; then
         echo "Note $fs has canmount=off so not mounted represented by empty directory $mp"
         return
     fi
-#    if [ "zfs list -H -o name
-    mount -o zfsutil -t zfs $fs $mp
+    zfs snapshot $fs@zmnt-$mp_`date -I`
+    if [ "$(zg_t $fs)" = "snapshot" || "$(zg_mp $fs)" = "legacy" ]; then
+        mount -t zfs $fs $mp
+    else
+        mount -o zfsutil -t zfs $fs $mp
+    fi
     echo mounted $fs on $mp
 }
 
@@ -130,7 +153,6 @@ zma() {
             echo "Not mounting $fs with canmount=off but $mpz created if not exist"
             continue
         fi
-        if
         if [ "$(zfs list -H -o mountpoint $fs)" = "legacy" ]; then
             mount -t zfs $fs $mpz
         else
@@ -152,18 +174,19 @@ zua() {
     # reverses output so unmount in order
     for fs in $fss; do
         mpz=$rooty/$fs
-        if [ "$(cat /proc/self/mounts | egrep -e $mpz)" ]; do
-             umount -f -t zfs $fs 2> /dev/null
-             umount -lf -t zfs $fs $mpz 2> /dev/null
-             umount -lf $mpz 2> /dev/null
-        done
-    rm -r $mpz 2> /dev/null
+        zum $fs $mpz
+        if [ "$(cat /proc/self/mounts | egrep -e $mpz)" ]; then
+             umount -lf $fs
+        fi
+        rm -r $mpz
     echo "Unmounted $fs and removed $mpz"
     done
+    echo testing if fs remains $fs $mpz
 }
 
 # mount ubuntu zfs / zsys datasets style
 zmaz() {
+# zfsutil mount rpool/ROOT/foo recurs, and USERDATA/foo BOOT/foo
     if [ "$1" = "-R" ]; then
         altr="$2"
         shift 2
@@ -172,7 +195,7 @@ zmaz() {
     fi
     zdist=$1
     zroot=rpool/ROOT/$1
-
+}
 
 #### take a manual zfs snap of mounted datasets
 zsnap() {
