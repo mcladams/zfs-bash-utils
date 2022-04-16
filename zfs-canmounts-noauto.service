@@ -1,0 +1,11 @@
+[Unit]
+Description=set all datasets with canmount on to off before shutdown
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/bin/bash /usr/local/bin/zfs-canmounts-noauto.sh
+
+[Install]
+WantedBy=multi-user.target
