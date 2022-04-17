@@ -1,0 +1,14 @@
+WinDirStat here shell extension
+https://thethinkingdeveloper.wordpress.com/2014/03/25/windirstat-here/
+
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\Directory\shell\windirstat]
+@="WinDirStat Here"
+"Icon"="C:\\Program Files (x86)\\WinDirStat\\windirstat.exe"
+[HKEY_CLASSES_ROOT\Directory\shell\windirstat\command]
+@="\"C:\\Program Files (x86)\\WinDirStat\\windirstat.exe\" \"%1\""
+[HKEY_CLASSES_ROOT\Drive\shell\windirstat]
+@="WinDirStat Here"
+"Icon"="C:\\Program Files (x86)\\WinDirStat\\windirstat.exe"
+[HKEY_CLASSES_ROOT\Drive\shell\windirstat\command]
+@="\"C:\\Program Files (x86)\\WinDirStat\\windirstat.exe\" %1"
