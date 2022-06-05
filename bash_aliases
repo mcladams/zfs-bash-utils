@@ -26,10 +26,9 @@ alias ll='ls -Al'
 alias la='ls -A'
 alias l='ls -CF'
 
-#### not sure origin of alert
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #### apt
 alias rdeps='apt-cache rdepends --no-recommends --no-suggests --no-enhances'
@@ -41,6 +40,9 @@ alias depr='apt-cache depends --no-suggests --no-enhances'
 #### disk usage ####
 alias du1='du -cxhd1'
 alias du5='du -cxhd1 --all -t50M'
+
+#### other aliases
+alias lsb='lsblk -o name,size,fstype,label,mountpoint,kname,uuid'
 
 #### general functions
 # list user functions defined
