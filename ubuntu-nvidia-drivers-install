@@ -1,0 +1,142 @@
+ubuntu      7316    7024  0 06:45 ?        00:00:00 /usr/libexec/gvfs-afc-volume-monitor
+root        7325       1  0 06:45 ?        00:00:00 /usr/libexec/upowerd
+ubuntu      7338    7059  0 06:45 tty2     00:00:00 /usr/libexec/gnome-session-binary --session=ubuntu
+ubuntu      7418    7024  0 06:45 ?        00:00:00 /usr/libexec/at-spi-bus-launcher
+ubuntu      7424    7418  0 06:45 ?        00:00:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run
+ubuntu      7433    7024  0 06:45 ?        00:00:00 /usr/libexec/gnome-session-ctl --monitor
+ubuntu      7445    7024  0 06:45 ?        00:00:00 /usr/libexec/gnome-session-binary --systemd-service --session=ubuntu
+ubuntu      7485    7024  0 06:45 ?        00:00:00 /usr/libexec/gnome-shell-calendar-server
+root        7497       1  0 06:45 ?        00:00:00 /usr/libexec/packagekitd
+ubuntu      7500    7024  0 06:45 ?        00:00:00 /usr/libexec/evolution-source-registry
+ubuntu      7510    7079  0 06:45 ?        00:00:00 /usr/libexec/gvfsd-trash --spawner :1.6 /org/gtk/gvfs/exec_spaw/0
+ubuntu      7532    7024  0 06:45 ?        00:00:02 /usr/libexec/at-spi2-registryd --use-gnome-session
+ubuntu      7548    7024  0 06:45 ?        00:00:00 sh -c /usr/bin/ibus-daemon --panel disable $([[ $XDG_SESSION_TYPE == "x11" ]] && echo "--xim")
+ubuntu      7549    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-a11y-settings
+ubuntu      7551    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-color
+ubuntu      7552    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-datetime
+ubuntu      7554    7024  0 06:45 ?        00:00:01 /usr/libexec/gsd-housekeeping
+ubuntu      7556    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-keyboard
+ubuntu      7558    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-media-keys
+ubuntu      7561    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-power
+ubuntu      7562    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-print-notifications
+ubuntu      7563    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-rfkill
+ubuntu      7564    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-screensaver-proxy
+ubuntu      7567    7024  0 06:45 ?        00:00:01 /usr/libexec/gsd-sharing
+ubuntu      7573    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-smartcard
+ubuntu      7574    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-sound
+ubuntu      7576    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-wacom
+ubuntu      7577    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-xsettings
+ubuntu      7583    7445  0 06:45 ?        00:00:00 /usr/libexec/gsd-disk-utility-notify
+ubuntu      7587    7445  0 06:45 ?        00:00:01 /usr/libexec/evolution-data-server/evolution-alarm-notify
+ubuntu      7617    7548  0 06:45 ?        00:01:03 /usr/bin/ibus-daemon --panel disable
+ubuntu      7675    7024  0 06:45 ?        00:00:00 /usr/libexec/gsd-printer
+ubuntu      7724    7024  0 06:46 ?        00:00:00 /usr/libexec/gvfsd-metadata
+colord      7751       1  0 06:46 ?        00:00:00 /usr/libexec/colord
+ubuntu      7754    7617  0 06:46 ?        00:00:00 /usr/libexec/ibus-dconf
+ubuntu      7755    7617  0 06:46 ?        00:00:09 /usr/libexec/ibus-extension-gtk3
+ubuntu      7765    7024  0 06:46 ?        00:00:00 /usr/libexec/ibus-portal
+ubuntu      7792    7024  0 06:46 ?        00:00:01 /usr/libexec/evolution-calendar-factory
+ubuntu      7838    7024  0 06:46 ?        00:00:01 /usr/libexec/xdg-desktop-portal
+ubuntu      7843    7024  0 06:46 ?        00:00:03 /usr/libexec/xdg-desktop-portal-gnome
+ubuntu      7873    7024  0 06:46 ?        00:00:00 /usr/libexec/dconf-service
+ubuntu      7874    7024  0 06:46 ?        00:00:00 /usr/libexec/evolution-addressbook-factory
+ubuntu      7921    7617  0 06:46 ?        00:00:20 /usr/libexec/ibus-engine-simple
+ubuntu      7940    7024  0 06:46 ?        00:00:00 /usr/libexec/xdg-desktop-portal-gtk
+ubuntu      7998    7024  0 06:46 ?        00:00:00 /usr/bin/python3 /usr/bin/gnome-terminal --wait
+ubuntu      8001    7998  0 06:46 ?        00:00:00 /usr/bin/gnome-terminal.real --wait
+ubuntu      8004    7024  0 06:46 ?        00:02:29 /usr/libexec/gnome-terminal-server
+ubuntu      8026    8004  0 06:46 pts/0    00:00:00 bash
+root        8033    8026  0 06:46 pts/0    00:00:08 sudo -i
+root        8034    8033  0 06:46 pts/1    00:00:00 sudo -i
+root        8035    8034  0 06:46 pts/1    00:00:00 -bash
+ubuntu      8056    7445  0 06:46 ?        00:00:00 update-notifier
+ubuntu      8381    7024  0 06:47 ?        00:00:00 /usr/bin/gnome-calendar --gapplication-service
+ubuntu      8385    7024  0 06:47 ?        00:00:00 /usr/bin/seahorse --gapplication-service
+ubuntu      8720    7079  0 06:49 ?        00:00:00 /usr/libexec/gvfsd-network --spawner :1.6 /org/gtk/gvfs/exec_spaw/1
+ubuntu      8735    7079  0 06:49 ?        00:00:00 /usr/libexec/gvfsd-dnssd --spawner :1.6 /org/gtk/gvfs/exec_spaw/3
+ubuntu      9149    7024  0 06:57 ?        00:00:00 /usr/bin/python3 /usr/bin/gnome-terminal --wait
+ubuntu      9152    9149  0 06:57 ?        00:00:00 /usr/bin/gnome-terminal.real --wait
+ubuntu      9156    8004  0 06:57 pts/3    00:00:00 bash
+root        9163    9156  0 06:57 pts/3    00:00:00 sudo -i
+root        9164    9163  0 06:57 pts/4    00:00:00 sudo -i
+root        9165    9164  0 06:57 pts/4    00:00:00 -bash
+root        9598       2  0 07:56 ?        00:00:00 [kworker/5:2-events]
+root        9943       2  0 08:48 ?        00:00:04 [kworker/7:2-events]
+root        9947       2  0 08:50 ?        00:00:01 [kworker/6:1-events]
+root        9976       2  0 09:01 ?        00:00:03 [kworker/5:0-events]
+root        9999       2  0 09:04 ?        00:00:03 [kworker/4:0-events]
+root       10011       2  2 09:09 ?        00:02:30 [kworker/u16:4+events_unbound]
+root       10272    7024  0 09:13 ?        00:00:00 dbus-launch --autolaunch=3419254778594d06be8611314fccbe4a --binary-syntax --close-stderr
+root       10273    7024  0 09:13 ?        00:00:00 /usr/bin/dbus-daemon --syslog-only --fork --print-pid 5 --print-address 7 --session
+root       10276    7024  0 09:13 ?        00:00:00 /usr/libexec/xdg-desktop-portal
+root       10281    7024  0 09:13 ?        00:00:00 /usr/libexec/xdg-document-portal
+root       10285    7024  0 09:13 ?        00:00:00 /usr/libexec/xdg-permission-store
+root       10291   10281  0 09:13 ?        00:00:00 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /root/.cache/doc
+root       10296    7024  0 09:13 ?        00:00:00 /usr/libexec/xdg-desktop-portal-gnome
+root       10307    7024  0 09:13 ?        00:00:00 /usr/libexec/gvfsd
+root       10312    7024  0 09:13 ?        00:00:00 /usr/libexec/gvfsd-fuse /root/.cache/gvfs -f
+root       10321    7024  0 09:13 ?        00:00:00 /usr/libexec/xdg-desktop-portal-gtk
+root       10329    7024  0 09:13 ?        00:00:00 /usr/bin/gnome-keyring-daemon --start --foreground --components=secrets
+root       11424       2  0 09:17 ?        00:00:00 [zvol]
+root       11426       2  0 09:17 ?        00:00:00 [zvol]
+root       12468   10307  0 09:19 ?        00:00:00 /usr/libexec/gvfsd-trash --spawner :1.5 /org/gtk/gvfs/exec_spaw/0
+root       12490       2  2 09:20 ?        00:02:55 [kworker/u16:3-events_unbound]
+root       12502    7024  0 09:20 ?        00:00:02 /usr/libexec/gvfs-udisks2-volume-monitor
+root       12523    7024  0 09:20 ?        00:00:00 /usr/libexec/gvfs-mtp-volume-monitor
+root       12528    7024  0 09:20 ?        00:00:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+root       12533    7024  0 09:20 ?        00:00:00 /usr/libexec/gvfs-goa-volume-monitor
+root       12537    7024  0 09:20 ?        00:00:00 /usr/libexec/goa-daemon
+root       12549    7024  0 09:20 ?        00:00:00 /usr/libexec/goa-identity-service
+root       12552    7024  0 09:20 ?        00:00:00 /usr/libexec/gvfs-afc-volume-monitor
+root       12563    7024  0 09:20 ?        00:00:00 /usr/libexec/dconf-service
+root       12567    7024  0 09:20 ?        00:00:00 /usr/libexec/gvfsd-metadata
+root       13496       2  0 09:25 ?        00:00:00 [jfsIO]
+root       13497       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13498       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13499       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13500       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13501       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13502       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13503       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13504       2  0 09:25 ?        00:00:00 [jfsCommit]
+root       13505       2  0 09:25 ?        00:00:00 [jfsSync]
+root       13508       2  0 09:25 ?        00:00:00 [xfsalloc]
+root       13509       2  0 09:25 ?        00:00:00 [xfs_mru_cache]
+root       15781    7024  0 09:28 ?        00:00:00 sudo --preserve-env=DBUS_SESSION_BUS_ADDRESS XDG_DATA_DIRS XDG_RUNTIME_DIR sh -c ubiquity gtk_ui
+root       15783   15781  0 09:28 ?        00:00:00 sh -c ubiquity gtk_ui
+root       15784   15783  0 09:28 ?        00:00:00 /bin/sh /usr/lib/udisks2/udisks2-inhibit /usr/lib/ubiquity/bin/ubiquity gtk_ui
+ubuntu     15789   15784  1 09:28 ?        00:01:06 /usr/bin/python3 /usr/lib/ubiquity/bin/ubiquity gtk_ui
+ubuntu     15943   15789  0 09:28 pts/6    00:00:00 /bin/busybox tail -f /var/log/installer/debug -f /var/log/syslog -q
+root       17629       2  0 09:32 ?        00:00:00 [kworker/1:2-events]
+root       20679   15789  0 10:12 ?        00:00:00 /usr/bin/perl -w /usr/bin/debconf-communicate -fnoninteractive ubiquity
+root       21656   15789  0 10:12 ?        00:00:00 log-output -t ubiquity --pass-stdout /usr/share/ubiquity/simple-plugins prepare
+root       21657   21656  0 10:12 ?        00:00:00 /bin/sh /usr/share/ubiquity/simple-plugins prepare
+root       22520       2  0 10:22 ?        00:00:00 [kworker/0:1-cgroup_destroy]
+root       23009       2  6 10:26 ?        00:02:33 [kworker/u16:2-events_unbound]
+root       23670       2  8 10:34 ?        00:02:27 [kworker/u16:0+flush-8:128]
+root       33270       2  2 10:40 ?        00:00:34 [kworker/u16:1-phy0]
+root       33743       2  6 10:43 ?        00:01:15 [kworker/u16:5+flush-8:128]
+root       33756       2  0 10:43 ?        00:00:00 [kworker/2:0-events]
+root       33803       2  0 10:44 ?        00:00:00 [kworker/3:1-events]
+root       33989       2  0 10:46 ?        00:00:00 [kworker/6:2-events]
+root       33991   21657  0 10:46 ?        00:00:03 /usr/bin/python3 /usr/bin/ubuntu-drivers install --package-list /run/ubuntu-drivers.autoinstall
+root       33999   33991  0 10:46 ?        00:00:01 apt-get install -o DPkg::options::=--force-confnew -y nvidia-driver-390 linux-modules-nvidia-390-generic-hwe-20.04
+root       34034   33999  0 10:46 ?        00:00:01 /usr/lib/apt/methods/cdrom
+root       43780       2  0 10:52 ?        00:00:00 [kworker/3:2-cgroup_destroy]
+root       44173       2  1 10:55 ?        00:00:06 [kworker/u16:6-phy0]
+root       44452       2  0 10:56 ?        00:00:02 [kworker/7:1-events]
+root       44502       2  0 10:56 ?        00:00:00 [kworker/1:0-mm_percpu_wq]
+root       44561       2  0 10:57 ?        00:00:00 [kworker/2:2-events]
+root       44614       2  0 10:57 ?        00:00:00 [kworker/0:2-events]
+ubuntu     44743    7024 14 10:57 ?        00:00:48 /usr/bin/gnome-shell
+root       44756       2  0 10:57 ?        00:00:00 [kworker/4:3-events]
+ubuntu     44786    7024  0 10:57 ?        00:00:00 /usr/bin/gjs /usr/share/gnome-shell/org.gnome.Shell.Notifications
+root       44860       2  0 10:57 ?        00:00:00 [kworker/u16:8-events_unbound]
+ubuntu     44907   44743  0 10:58 ?        00:00:01 gjs /usr/share/gnome-shell/extensions/ding@rastersoft.com/ding.js -E -P /usr/share/gnome-shell/extensions/ding@rastersoft.com -M 0 -D 
+root       44950       2  0 10:58 ?        00:00:00 [kworker/3:0-events]
+root       45117       2  0 10:59 ?        00:00:00 [kworker/6:0-events]
+root       45118   33999  0 10:59 pts/9    00:00:00 /usr/bin/dpkg --force-confnew --status-fd 23 --configure --pending
+root       45229   45118  0 11:03 pts/9    00:00:00 /bin/sh /var/lib/dpkg/info/man-db.postinst triggered /usr/share/man
+man        45230   45229  1 11:03 pts/9    00:00:00 /usr/bin/mandb -pq
+root       45231    9165  0 11:03 pts/4    00:00:00 ps -Af
+
