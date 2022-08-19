@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -87,6 +87,68 @@ rs_mv() {
 #
 #
 
+#### apt,dpkg,etc ####
+deb2xz() {
+    #usage rename default or overwrite origial with --overwrite -w 
+    if ([ "$1" = "-w" ] || [ "$1" = "--overwrite" ]); then
+        overwrite=true
+        shift 1
+    fi
+    pkges="$@"
+    for pkg in $pkges; do
+        pname=$(echo "$pkg" | sed 's/\.deb//g')
+        files=$(ar -t "$pname".deb)
+        if grep -q "control.tar.xz" <<< $files; then
+            : #echo archive already xz nothing to do
+        else
+            ar -x "$pname".deb
+            zstd -d < control.tar.zst | xz > control.tar.xz
+            zstd -d < data.tar.zst | xz > data.tar.xz
+            if $overwrite; then
+                rm "$pname".deb
+                ar -m -c -a sdsd "$pname".deb debian-binary control.tar.xz data.tar.xz
+            else
+                ar -m -c -a sdsd "$pname"-xz.deb debian-binary control.tar.xz data.tar.xz
+            fi
+            rm debian-binary control.tar.xz data.tar.xz control.tar.zst data.tar.zst
+        fi
+    done
+}
+
+mnt() {
+    mtpoint=$(eval echo '$'$#)
+    if [ ! -d "$mtpoint" ]; then
+        mkdir -p "$mtpoint"
+        mount "$@"
+        return
+    else
+        if grep -q "$mtpoint" <<< $(cat /self/proc/mounts); then
+            devmounted=$(cat /proc/self/mounts | grep "$mtpoint" | awk '{ print $1 }')
+            read -p "$devmounted is already mounted at $mntpoint" -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then mount "@"; return; fi
+        else
+            mount "$@"
+        fi
+    fi
+}
+
+mnta() {
+    for arg in "$@"; do
+        if grep -q "$arg" <<< $(lsblk -n -o label); then
+            argnospace=$(echo "$arg" | sed 's/[ ]/\-/g')
+            mkdir /media/mnt/$argnospace
+            mount LABEL="$arg" /media/mnt/$argnospace
+        elif grep -q ${arg##*/} <<< $(lsblk -n -o kname); then
+            kdev=${arg##*/}
+            mkdir /media/mnt/$kdev
+            mount /dev/$kdev /media/mnt/$kdev
+        else
+            echo "$arg" neither a label nor a device name, not mounted
+        fi
+    done
+}
+
 #### zfs list,mount,move ####
 
 alias zls='zfs list -o name,used,referenced,canmount,mounted,mountpoint'
@@ -125,8 +187,8 @@ zmt() {
     mp=$2
     if [ ! -d "$mp" ]; then
         mkdir -p $mp
-    elif [ "$(cat /proc/self/mounts | grep " $mp ")" ]; then
-        echo "Error: $(cat /proc/self/mounts | grep ' $mp ' | awk '{ print $1 }') is mounted on $mp"
+    elif [ "$(cat /proc/self/mounts | grep $mp )" ]; then
+        echo "Error: another device or filesystem is already mounted on $mp"
         return
     elif [ ! "$(find $mp -maxdepth 0 -empty)" ]; then
         echo "Error: $mp exists and is not empty, not mounting"
@@ -136,7 +198,7 @@ zmt() {
         echo "Note $fs has canmount=off so not mounted represented by empty directory $mp"
         return
     fi
-    zfs snapshot $fs@zmnt-$mp_`date -I`
+    zfs snapshot $fs@zmnt-$mp_`date -Iminutes | sed 's/+08:00//'`
     if [ "$(zg_t $fs)" = "snapshot" ] || [ "$(zg_mp $fs)" = "legacy" ]; then
         mount -t zfs $fs $mp
     else
@@ -157,7 +219,7 @@ zma() {
     for fs in $fss; do
         mpz=$rooty/$fs
         if [ ! "$(cat /proc/self/mounts | egrep -e $mpz)" = "" ]; then
-            echo "Mount point $mpz used, not mounting $fs (already mounted?)"
+            echo "Mount point $mpz used, not mounting $fs"
             continue
         fi
         if [ ! -d $mpz ]; then
@@ -217,7 +279,7 @@ zmaz() {
 
 #### take a manual zfs snap of mounted datasets
 zsnap() {
-    dstamp=$(date -I)
+    dstamp=$(date -Iminutes | sed 's/+08:00//')
     if [ "$1" ]; then
         nom="$1-$dstamp"
     else
@@ -231,8 +293,8 @@ zsnap() {
 
 #### repace spaces with underscore ####
 underscore() {
-#    if [ "$1" ]; then maxd="$1"; else maxd=20; fi
+#    if [ $1 ]; then maxd=$1; else maxd=20; fi
     for i in {1..18}; do
-        find ./ -mindepth $i -maxdepth $i -path "* *" -print0 | xargs -0 rename 'y/ /_/'
+        find ./ -mindepth $i -maxdepth $i -regex '.*[ ].*' -print0 | xargs -0 sed 's/[ ]/_/g'
     done
 }
