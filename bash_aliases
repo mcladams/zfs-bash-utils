@@ -9,7 +9,20 @@
 #    . ~/.bash_aliases
 #fi
 
+#### apt maintenance
 alias upg='apt update && apt upgrade -y && apt autoremove -y && apt autoclean'
+# search for packages with residual-config and purge
+alias apt-rmconf='apt update; apt purge $(for l in {a..z}; do apt list $l* 2>/dev/null | grep -E -e "\[residual\-config\]" | grep -E -e "^[^/]+" -o; done)'
+# display all reverse depends of all manually installed pkgs
+
+finalrdeps() {
+    maninstalls=$(apt-mark showmanual | sort | uniq)
+    for pkg in $maninstalls; do
+        uniqs=$(apt-cache rdepends --no-recommends --no-suggests --no-enhances $pkg | egrep -e '^[ ][ |]' | sed 's/[ ][ |]//g' | sort | uniq)
+        if [ -z $uniqs ]; then echo $pkg >> nordeps.list; fi
+        dpkg-query -l $uniqs | egrep -e '^ii' | awk '{ print $2 }' >> allrdeps.list
+    done
+}
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -27,10 +40,6 @@ fi
 alias ll='ls -Al'
 alias la='ls -A'
 alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #### apt
 alias rdeps='apt-cache rdepends --no-recommends --no-suggests --no-enhances'
