@@ -307,3 +307,14 @@ underscore() {
         find ./ -mindepth $i -maxdepth $i -regex '.*[ ].*' -print0 | xargs -0 sed 's/[ ]/_/g'
     done
 }
+
+# deb http://au.archive.ubuntu.com/ubuntu/ kinetic main universe
+# deb http://security.ubuntu.com/ubuntu kinetic-security main universe
+
+# apt install --no-install-recommends ubuntu-desktop ubuntu-standard \
+# ubuntu-desktop-minimal ubuntu-minimal baobab branding-ubuntu deja-dup ]
+# gnome-calendar shotwell simple-scan totem transmission-gtk usb-creator-gtk 
+# gnome-disk-utility gparted gnome-shell gnome-control-center systemd \
+# systemd-sysv systemd-oomd systemd-container zfsutils-linux zfs-zed \
+# grub-efi-amd64 grub-pc-bin
+
