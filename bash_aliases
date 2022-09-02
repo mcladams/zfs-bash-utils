@@ -11,8 +11,11 @@
 
 #### apt maintenance
 alias upg='apt update && apt upgrade -y && apt autoremove -y && apt autoclean'
+alias upgf='apt update && apt upgrade -y && apt full-upgrade -y && apt autoremove -y && apt autoclean'
+
 # search for packages with residual-config and purge
 alias apt-rmconf='apt update; apt purge $(for l in {a..z}; do apt list $l* 2>/dev/null | grep -E -e "\[residual\-config\]" | grep -E -e "^[^/]+" -o; done)'
+
 # display all reverse depends of all manually installed pkgs
 
 finalrdeps() {
