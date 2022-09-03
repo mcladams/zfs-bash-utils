@@ -1,34 +1,43 @@
 #! /bin/bash
 
-lastim=$(date +%s)
-rootsets=$(zfs list -H -o name | grep ROOT)
-for rset in $rootsets; do
-    zfs set com.ubuntu.zsys:last-used=$lastim $rset
-    if grep -q 'var' <<< $rset; then
-        zfs set com.ubuntu.zsys:bootfs=no $rset
-    else
-        zfs set com.ubuntu.zsys:bootfs=yes $rset
+for arg in $@; do
+    id=${arg##*/}
+    rootds=$(zfs list | egrep -e '$id.*\/' | awk '{ print $1 }')
+    if [ -z $rootds ]; then continue; fi
+    lastim=$(date +%s)
+    for ds in $(zfs list -H -o name | grep $id); do
+        if ! zfs get all $ds | grep -q com.ubuntu.zsys:last=used; then
+            zfs set org.ubuntu.zsys:last-used=$lastim $ds
+        fi
+        if [ "$(zfs list -H -o mountpoint $ds)" = "/boot" ]; then
+            bootds=$ds
+            mkdir /tmp/$ds
+            mount -t zfs -o zfsutil -o readonly $ds /tmp/$ds
+            bootkern=$(ls -1 --sort time /tmp/$ds | grep vmlinuz | head -n 1)
+            umount -lf /tmp/$ds
+        elif "$(zfs list -H -o mountpoint)" | grep -q -e 'home' -e 'root'; then
+            userds+=("$ds")
+        fi
+    done
+    if [ -z $bootkern ]; then
+        mkdir /tmp/$id
+        zfsmount -t zfs -o zfsutil -o readonly $bootds /tmp/$id
+        kernver=$(ls -1 /tmp/$id/usr/lib/modules | tail -n 1)
+        umount -lf /tmp/$id
+        bootkern=$(eval echo 'vmlinuz-'$kernver)
+        if [$ -z $bootkern ]; then $bootkern=vmlinuz; fi
     fi
-    case $rset in
-        *jammy*)
-            zfs set com.ubuntu.zsys:last-booted-kernel=vmlinuz-5.15.0-46-generic $rset
-        ;;
-        *kaisen*)
-            zfs set com.ubuntu.zsys:last-booted-kernel=vmlinuz-5.18.0-4-amd64 $rset
-        ;;
-        *pve40*)
-            zfs set com.ubuntu.zsys:last-booted-kernel=vmlinuz-5.13.19-2-pve $rset
-        ;;
-    esac
-done
-
-usersets=$(zfs list -H -o name | grep USERDATA)
-for uset in $usersets; do
-    zfs set com.ubuntu.zsys:last-used=$lastim $uset
-    zfs set com.ubuntu.zsys:bootfs-datasets=$(sed 's/USERDATA/ROOT/' <<< $uset) $uset
-done
-
-bootsets=$(zfs list -H -o name | grep BOOT)
-for bset in $bootsets; do
-    zfs set com.ubuntu.zsys:last-used=$lastim $bset
+    for rds in $(zfs list -H -o name -r $rootds); do
+        if ! zfs get all $rds | grep -q com.ubuntu.zsys:bootfs; then
+            zfs set org.ubuntu.zsys:bootfs=no $rds
+        fi
+        if ! zfs get all $rds | grep -q com.ubuntu.zsys:last-booted-kernel; then
+            zfs set org.ubuntu.zsys:last-booted-kernel=$bootkern $rds
+        fi
+    done
+    for uds in ${userds[@]}; do
+        if ! zfs get all $uds | grep -q com.ubuntu.zsys:bootfs-datasets; then
+            zfs set org.ubuntu.zsys:bootfsdatasets=$bootds $uds
+        fi
+    done
 done
