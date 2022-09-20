@@ -18,6 +18,31 @@ alias apt-rmconf='apt update; apt purge $(for l in {a..z}; do apt list $l* 2>/de
 
 # display all reverse depends of all manually installed pkgs
 
+wol() {
+    #definition of MAC addresses
+    pve10_tower=50:e5:49:e9:04:66
+    pve20_arrow=e0:69;95;3b:c4:3e
+    pve30_a515=
+    pve40_pro470=dc:4a:3e:f0:1e:af
+
+    echo "Which PC to wake?"
+    echo "  1) pve10 tower    192.168.20.10    $pve10-tower"
+    echo "  2) pve20 arrow    192.168.20.20    $pve20-arrow"
+    echo "  3) pve30 a515     192.168.20.30"
+    echo "  4) pve40 pro470   192.168.20.40    $pve40-pro470"
+    echo "  5) oldpro"
+    echo "  6) dellbox"
+    read $input1
+    case $input1 in
+        1) wakeonlan $pve10_tower ;;
+        2) wakeonlan $pve20_arrow ;;
+        3) wakeonlan $pve30_a515 ;;
+        4) wakeonlan $pve40_pro470 ;;
+        Q|q) break ;;
+    esac
+}
+
+
 finalrdeps() {
     maninstalls=$(apt-mark showmanual | sort | uniq)
     for pkg in $maninstalls; do
