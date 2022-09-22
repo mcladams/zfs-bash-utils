@@ -1,0 +1,30 @@
+HOST pve20 config   /var/lib/lxc/101/config
+not directly edited but has copied changes to container conf
+NOTE: mountpoint is made for coainer at /var/lib/lxc/101/rootfs
+
+CONTAINER CT-ID config    /etc/pve/lxc/101.conf   added before first start:
+lxc.apparmor_profile: unconfined
+lxc.mount.auto: cgroup:rw
+lxc.mount.auto: proc:rw
+lxc.mount.auto: sys:rw
+
+added later to make disk/partition device files, in this example from
+root@pve20:~# ll /dev/sdf*
+brw-rw---- 1 root disk 0, 0 Sep 21 21:45 /dev/sdf
+brw-rw---- 1 root disk 0, 0 Sep 21 21:45 /dev/sdf1
+brw-rw---- 1 root disk 0, 0 Sep 21 21:45 /dev/sdf9
+
+we make mounts allowed in the container /etc/pve/lxc/101.conf
+lxc.cgroup.devices.allow: b 8:80 rwm
+lxc.cgroup.devices.allow: b 8:81 rwm
+lxc.cgroup.devices.allow: b 8:89 rwm
+lxc.autodev: 1
+
+we make the mounts in pve host with hook file /var/lib/lxc/101/mount-hook.sh
+#! /bin/sh
+LXC_ROOTFS_MOUNT=/var/lib/lxc/101/rootfs
+mknod -m 777 ${LXC_ROOTFS_MOUNT}/dev/sdf b 8 80
+mknod -m 777 ${LXC_ROOTFS_MOUNT}/dev/sdf1 b 8 81
+mknod -m 777 ${LXC_ROOTFS_MOUNT}/dev/sdf9 b 8 89
+
+Add any bind mounts (up to 256) we want in the container config /etc/pve/lxc/101.conf
