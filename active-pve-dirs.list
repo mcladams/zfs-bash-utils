@@ -1,0 +1,13 @@
+# List of active Proxmox VE directories from 3 madchines over 3 hours
+# Future work to have ro root with ram overlay
+
+root@pve40:# du -chd0 /etc/pve /var/lib/lxcfs /var/lib/smartmontools \
+> /var/lib/pve-cluster /var/lib/rrdcached /var/log
+136K	/etc/pve
+40K	/var/lib/lxcfs
+376K	/var/lib/smartmontools
+4.1M	/var/lib/pve-cluster
+1.1M	/var/lib/rrdcached
+48M	/var/log
+54M	total
+

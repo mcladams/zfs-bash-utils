@@ -9,48 +9,6 @@
 #    . ~/.bash_aliases
 #fi
 
-#### apt maintenance
-alias upg='apt update && apt upgrade -y && apt autoremove -y && apt autoclean'
-alias upgf='apt update && apt upgrade -y && apt full-upgrade -y && apt autoremove -y && apt autoclean'
-
-# search for packages with residual-config and purge
-alias apt-rmconf='apt update; apt purge $(for l in {a..z}; do apt list $l* 2>/dev/null | grep -E -e "\[residual\-config\]" | grep -E -e "^[^/]+" -o; done)'
-
-# display all reverse depends of all manually installed pkgs
-
-wol() {
-    #definition of MAC addresses
-    pve10_tower="50:e5:49:e9:04:66"
-    pve20_arrow="e0:69:95:3b:c4:3e"
-    pve30_a515="98:28:a6:1a:90:7a"
-    pve40_pro470="dc:4a:3e:f0:1e:af"
-
-    echo "Which PC to wake?"
-    echo "  1) pve10 tower    192.168.20.10    $pve10_tower"
-    echo "  2) pve20 arrow    192.168.20.20    $pve20_arrow"
-    echo "  3) pve30 a515     192.168.20.30    $pve30_a515"
-    echo "  4) pve40 pro470   192.168.20.40    $pve40_pro470"
-    echo "  5) oldpro"
-    echo "  6) dellbox"
-    read -n1 input1
-    case $input1 in
-        (1) /usr/bin/wakeonlan $pve10_tower ;;
-        (2) /usr/bin/wakeonlan $pve20_arrow ;;
-        (3) /usr/bin/wakeonlan $pve30_a515 ;;
-        (4) /usr/bin/wakeonlan $pve40_pro470 ;;
-        (Q|q) break ;;
-    esac
-}
-
-finalrdeps() {
-    maninstalls=$(apt-mark showmanual | sort | uniq)
-    for pkg in $maninstalls; do
-        uniqs=$(apt-cache rdepends --no-recommends --no-suggests --no-enhances $pkg | egrep -e '^[ ][ |]' | sed 's/[ ][ |]//g' | sort | uniq)
-        if [ -z $uniqs ]; then echo $pkg >> nordeps.list; fi
-        dpkg-query -l $uniqs | egrep -e '^ii' | awk '{ print $2 }' >> allrdeps.list
-    done
-}
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -68,6 +26,29 @@ alias ll='ls -Al'
 alias la='ls -A'
 alias l='ls -CF'
 
+#### apt maintenance
+alias upg='apt update && apt upgrade -y && apt autoremove -y && apt autoclean'
+alias upgf='apt update && apt upgrade -y && apt full-upgrade -y && apt autoremove -y && apt autoclean'
+alias apt-nir='apt install --no-install-recommends'
+alias apt-arp='apt remove --auto-remove --purge'
+apt-lsi() { apt list $@ | egrep -e '\[.*\]'; }
+apt-lsi1() { apt list $@ | egrep -e '\[.*\]'; egrep -e '^[^/]+' -o; }
+apt-lsn() { apt list $@ | egrep -e '\[.*\]' -v; }
+apt-lsi1() { apt list $@ | egrep -e '\[.*\]' -v; egrep -e '^[^/]+' -o; }
+
+# search for packages with residual-config and purge
+alias apt-rmconf='apt update; apt-get remove --autoremove --purge $(for l in {a..z}; do apt list $l* 2>/dev/null | grep -E -e "\[residual\-config\]" | grep -E -e "^[^/]+" -o; done)'
+
+# display all reverse depends of all manually installed pkgs
+#finalrdeps() {
+#    maninstalls=$(apt-mark showmanual | sort | uniq)
+#    for pkg in $maninstalls; do
+#        uniqs=$(apt-cache rdepends --no-recommends --no-suggests --no-enhances $pkg | egrep -e '^[ ][ |]' | sed 's/[ ][ |]//g' | sort | uniq)
+#        if [ -z $uniqs ]; then echo $pkg >> nordeps.list; fi
+#        dpkg-query -l $uniqs | egrep -e '^ii' | awk '{ print $2 }' >> allrdeps.list
+#    done
+#}
+
 #### apt
 alias rdeps='apt-cache rdepends --no-recommends --no-suggests --no-enhances'
 alias deps='apt-cache depends --no-recommends --no-suggests --no-enhances'
@@ -75,26 +56,53 @@ alias deps='apt-cache depends --no-recommends --no-suggests --no-enhances'
 alias rdepr='apt-cache rdepends --no-suggests --no-enhances'
 alias depr='apt-cache depends --no-suggests --no-enhances'
 
+wol() {
+    #definition of MAC addresses
+    pve10_tower="50:e5:49:e9:04:66"
+    pve20_arrow="e0:69:95:3b:c4:3e"
+    pve30_a515="98:28:a6:1a:90:7a"
+    pve40_pb470="dc:4a:3e:f0:1e:af"
+
+    echo "Which PC to wake?"
+    echo "  1) pve10-tower    pve10_tower     192.168.20.10"
+    echo "  2) pve20-arrow    $pve20_arrow    192.168.20.20"
+    echo "  3) pve30-a515     $pve30_a515     192.168.20.30"
+    echo "  4) pve40-pb470    $pve40_pb470    192.168.20.40"
+    echo "  5) oldpro"
+    echo "  6) dellbox"
+    read -n1 input1
+    case $input1 in
+        (1) /usr/bin/wakeonlan $pve10_tower ;;
+        (2) /usr/bin/wakeonlan $pve20_arrow ;;
+        (3) /usr/bin/wakeonlan $pve30_a515 ;;
+        (4) /usr/bin/wakeonlan $pve40_pb470 ;;
+        (Q|q) break ;;
+    esac
+}
+
 #### disk usage ####
 alias du1='du -cxhd1'
-alias du5='du -cxhd1 --all -t50M'
+alias du5='du -cxhd1 --all -t20M'
 
 #### other aliases
-alias lsb='lsblk -o name,size,fstype,label,mountpoint,kname,uuid'
+alias lsb='lsblk -o name,size,type,partlabel,fstype,label,mountpoint'
+alias lsbu='lsblk -o name,size,fstype,label,uuid,mountpoint'
+alias lsbp='lsblk -o name,size,fstype,label,partuuid,mountpoint'
+alias lsbup='lsblk -o name,size,fstype,label,uuid,kname,type,partuuid'
 
 #### general functions
 # list user functions defined
 # alternatively 'compgen -A function'
-alias flist='declare -F |cut -d" " -f3 |egrep -v "^_"'
+alias flist='declare -F |cut -d" " -f3 | egrep -v "^_"'
 alias fdef='declare -f'
 
 pname_abs() {
-# pn_abs: get absolute pathname from relative
-    abspn=$(readlink -f `pwd`/$1)
-    filename=${abspn##*/}
-    path=${abspn%/*}
-    echo $abspn
-    #echo $path $filename
+# pn_abs: get absolute pathname(s) from relative
+    pathname=$(readlink -f $1)
+    filename=${pathname##*/}
+    path=${pathname%/*}
+    #echo $path $filename $pathname
+    echo $pathname
 }
 
 #### rsync ####
@@ -153,31 +161,52 @@ deb2xz() {
 
 mnt() {
     mtpoint=$(eval echo '$'$#)
-    if [ ! -d "$mtpoint" ]; then
-        mkdir -p "$mtpoint"
+#    realmp=$(realpath -m $mtpoint)
+    if [ ! -a $mtpoint ]; then
+        mkdir -p $mtpoint
         mount "$@"
         return
+    elif [ ! -d "$mtpoint" ]; then
+        echo "Mointpoint is not a directory, not mounting $@"
+        return 1
     else
-        if grep -q "$mtpoint" <<< $(cat /self/proc/mounts); then
-            devmounted=$(cat /proc/self/mounts | grep "$mtpoint" | awk '{ print $1 }')
-            read -p "$devmounted is already mounted at $mntpoint" -n 1 -r
-            echo
-            if [[ $REPLY =~ ^[Yy]$ ]]; then mount "@"; return; fi
-        else
+#        if grep -q " $realmp" <<< $(cat /proc/self/mounts); then
+#            mtdevs=$(cat /proc/self/mounts | grep " $realmp" | awk '{ print $1 }')
+#            echo -n "$mtdevs already mounted at $realmp, overlay? :"
+#            read -n1 input1
+#            echo
+#            if [[ $input1 =~ ^[Yy]$ ]]; then
+#                mount "$@"
+#                return
+#            else
+#                echo "Did not mount $@"
+#                return 1
+#            fi
+#        elif [ "$(ls -A1 $mtpoint)" ]; then
+#            read -p "Directory $mtpoint is not empty, overlay? :" -n1 input2
+#            echo
+#            if [[ $input2 =~ ^[Yy]$ ]]; then
+#                mount "$@"
+#                return
+#            else
+#                echo "Did not mount $@"
+#                return
+#            fi
+#        else
             mount "$@"
-        fi
+#        fi
     fi
 }
 
 mnta() {
-    for arg in "$@"; do
+    for arg in $@; do
         if grep -q "$arg" <<< $(lsblk -n -o label); then
-            argnospace=$(echo "$arg" | sed 's/[ ]/\-/g')
-            mkdir /media/mnt/$argnospace
+            #argnospace=$(echo "$arg" | sed 's/[ ]/\-/g')
+            mkdir -p /media/mnt/$argnospace
             mount LABEL="$arg" /media/mnt/$argnospace
         elif grep -q ${arg##*/} <<< $(lsblk -n -o kname); then
             kdev=${arg##*/}
-            mkdir /media/mnt/$kdev
+            mkdir -p /media/mnt/$kdev
             mount /dev/$kdev /media/mnt/$kdev
         else
             echo "$arg" neither a label nor a device name, not mounted
@@ -215,8 +244,8 @@ alias zg_mt='zfs list -H -o mounted'
 alias zg_mp='zfs list -H -o mountpoint'
 alias zg_cm='zfs list -H -o canmount'
 
-#alias zm='mount -t zfs -o zfsutil'
-alias zum='umount -t zfs -lf'
+alias zm='mount -t zfs -o zfsutil'
+alias zu='umount -t zfs'
 
 zmt() {
     fs=$1
@@ -277,24 +306,20 @@ zma() {
 
 # umount -t zfs datasets [recursively] with force and remove mountpoints
 zua() {
-    if [ "$1" = "-R" ]; then
-        rooty="$2"
-        shift 2
-    else
-        rooty="/z"
-    fi
     fss=$(zfs list -H -o name $@ | tac)
     # reverses output so unmount in order
     for fs in $fss; do
-        mpz=$rooty/$fs
-        zum $fs $mpz
-        if [ "$(cat /proc/self/mounts | egrep -e $mpz)" ]; then
-             umount -lf $fs
+        mpz=$(zfs list -H -o mountpoint $fs)
+        umount -t zfs $fs 2>/dev/null
+        umount $mpz 2>/dev/null
+        umount -lf $mpz
+        if [ "$(ls -A1 $mpz)" ]; then
+            echo "Unmounted $fs; $mpz not empty so not removed"
+        else
+            rm -r $mpz
+            echo "Unmounted $fs and removed $mpz"
         fi
-        rm -r $mpz
-    echo "Unmounted $fs and removed $mpz"
     done
-    echo testing if fs remains $fs $mpz
 }
 
 # mount ubuntu zfs / zsys datasets style
