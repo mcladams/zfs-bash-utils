@@ -30,7 +30,7 @@ alias l='ls -CF'
 alias upg='apt update && apt upgrade -y && apt autoremove -y && apt autoclean'
 alias upgf='apt update && apt upgrade -y && apt full-upgrade -y && apt autoremove -y && apt autoclean'
 alias apt-nir='apt install --no-install-recommends'
-alias apt-arp='apt remove --auto-remove --purge'
+alias apt-arp='apt remove --autoremove --purge'
 apt-lsi() { apt list $@ | egrep -e '\[.*\]'; }
 apt-lsi1() { apt list $@ | egrep -e '\[.*\]'; egrep -e '^[^/]+' -o; }
 apt-lsn() { apt list $@ | egrep -e '\[.*\]' -v; }
@@ -50,11 +50,11 @@ alias apt-rmconf='apt update; apt-get remove --autoremove --purge $(for l in {a.
 #}
 
 #### apt
-alias rdeps='apt-cache rdepends --no-recommends --no-suggests --no-enhances'
-alias deps='apt-cache depends --no-recommends --no-suggests --no-enhances'
+alias rdeps='apt-cache rdepends --no-recommends --no-suggests --no-enhances --no-breaks --no-replaces'
+alias deps='apt-cache depends --no-recommends --no-suggests --no-enhances --no-breaks --no-replaces'
 # versions with recommends; some metapackages use recommends
-alias rdepr='apt-cache rdepends --no-suggests --no-enhances'
-alias depr='apt-cache depends --no-suggests --no-enhances'
+alias rdepr='apt-cache rdepends --no-suggests --no-enhances --no-breaks --no-replaces'
+alias depr='apt-cache depends --no-suggests --no-enhances --no-breaks --no-replaces'
 
 wol() {
     #definition of MAC addresses
