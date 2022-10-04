@@ -1,5 +1,17 @@
-#! /bin/bash
 
+
+
+
+pve10	tower	en0	50:e5:49:e9:04:66
+pve20	arrow	en0	e0:69:95:3b:c4:3e
+pve30	a515	enpss0f1	98:28:a6:1a:90:7a	192.168.20.30
+		wlp3s0	50:5b:c2:a2:41:29		192.168.20.29
+pve40	pb470	enp2s0	dc:4a:3e:f0:1e:af	192.168.20.40
+		wlp3s0	de:2f:36:23:fd:b2	192.168.20.39
+
+
+#! /bin/bash
+# wolon.sh - activate wake-on-g and make systemd-network patch
 ethifs=$(ip -br link | egrep -e '^e' | awk '{ print $1 }')
 for enp in $ethifs; do
     enpmac=$(ip -br link | grep \^$enp | awk '{ print $3 }')
@@ -11,8 +23,8 @@ for enp in $ethifs; do
     if [[ $wolsup = *g* ]]; then
         ethtool -s $enp wol g
         printf "[Match]\nMACAddress=$enpmac\n\n[Link]\nNamePolicy=kernel database \
-onboard slot path\nMACAddressPolicy=persistent\nWakeOnLan=magic\n"} \
->> /etc/systemd/network/50-wired-wolon.link
+onboard slot path\nMACAddressPolicy=persistent\nWakeOnLan=magic"\n} \
+>> /etc/systemd/network/50-wired.link
         echo "WOL-g activated and added to /etc/systemd/network/50-wired.link"
     else
         echo "Interface $enp at $enpmac does not support wake-on-lan"
