@@ -1,0 +1,69 @@
+pve10	tower	en0	50:e5:49:e9:04:66		
+pve20	arrow	en0	e0:69:95:3b:c4:3e
+pve30	pb370	enp2s0f1	98:28:a6:1a:90:7a
+		wlp3s0	
+pve40	a515	enp2s0	dc:4a:3e:f0:1e:af	192.168.20.40
+		wlp3s0	a4:34:d9:6d:95:8e	192.168.30.41
+
+# ILES40 appliance services
+WebDAV (CGI):    https://192.168.20.41
+Web shell:       https://192.168.20.41:12320
+Webmin:          https://192.168.20.41:12321
+SMB/CIFS:        \\192.168.20.41 (ports 139/445)
+SSH/SFTP:        root@192.168.20.41 (port 22)
+
+# fdef wol
+wol () 
+{ 
+    pve10_tower="50:e5:49:e9:04:66";
+    pve20_arrow="e0:69:95:3b:c4:3e";
+    pve30_a515="98:28:a6:1a:90:7a";
+    pve40_pb470="dc:4a:3e:f0:1e:af";
+    echo "Which PC to wake?";
+    echo "  1) pve10-tower    pve10_tower     192.168.20.10";
+    echo "  2) pve20-arrow    $pve20_arrow    192.168.20.20";
+    echo "  3) pve30-a515     $pve30_a515     192.168.20.30";
+    echo "  4) pve40-pb470    $pve40_pb470    192.168.20.40";
+    echo "  5) oldpro";
+    echo "  6) dellbox";
+    read -n1 input1;
+    case $input1 in 
+        1)
+            /usr/bin/wakeonlan $pve10_tower
+        ;;
+        2)
+            /usr/bin/wakeonlan $pve20_arrow
+        ;;
+        3)
+            /usr/bin/wakeonlan $pve30_a515
+        ;;
+        4)
+            /usr/bin/wakeonlan $pve40_pb470
+        ;;
+        Q | q)
+            break
+        ;;
+    esac
+}
+
+# cat wolon.sh
+#! /bin/bash
+ethifs=$(ip -br link | egrep -e '^e' | awk '{ print $1 }')
+for enp in $ethifs; do
+    enpmac=$(ip -br link | grep \^$enp | awk '{ print $3 }')
+    if [ "$(ethtool $enp | egrep -e '^[[:space:]]*Wake-on' | awk '{ print $2 }' )" = "g" ]; then
+        echo "Wake-on magic-packet (g) already activated for $enp at $enpmac"
+        continue
+    fi
+    wolsup=$(ethtool $enp | grep -e 'Supports Wake-on' | awk '{ print $3 }' )
+    if [[ $wolsup = *g* ]]; then
+        ethtool -s $enp wol g
+        printf "[Match]\nMACAddress=$enpmac\n\n[Link]\nNamePolicy=kernel database \
+onboard slot path\nMACAddressPolicy=persistent\nWakeOnLan=magic"\n} \
+>> /etc/systemd/network/50-wired.link
+        echo "WOL-g activated and added to /etc/systemd/network/50-wired.link"
+    else
+        echo "Interface $enp at $enpmac does not support wake-on-lan"
+    fi
+done
+

@@ -329,7 +329,9 @@ zua() {
         umount -t zfs $fs 2>/dev/null
         umount $mpz 2>/dev/null
         umount -lf $mpz
-        if [ "$(ls -A1 $mpz)" ]; then
+        if [ $(zfs mount | grep "$fss " -o) ]; then
+            echo "Error: $fs did NOT unmount from $mpz"
+        elif [ "$(ls -A1 $mpz)" ]; then
             echo "Unmounted $fs; $mpz not empty so not removed"
         else
             rm -r $mpz
