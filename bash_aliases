@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -34,7 +34,7 @@ alias apt-arp='apt remove --autoremove --purge'
 apt-lsi() { apt list $@ | egrep -e '\[.*\]'; }
 apt-lsi1() { apt list $@ | egrep -e '\[.*\]'; egrep -e '^[^/]+' -o; }
 apt-lsn() { apt list $@ | egrep -e '\[.*\]' -v; }
-apt-lsi1() { apt list $@ | egrep -e '\[.*\]' -v; egrep -e '^[^/]+' -o; }
+apt-lsn1() { apt list $@ | egrep -e '\[.*\]' -v; egrep -e '^[^/]+' -o; }
 
 # search for packages with residual-config and purge
 alias apt-rmconf='apt update; apt-get remove --autoremove --purge $(for l in {a..z}; do apt list $l* 2>/dev/null | grep -E -e "\[residual\-config\]" | grep -E -e "^[^/]+" -o; done)'
@@ -79,6 +79,10 @@ wol() {
         (Q|q) break ;;
     esac
 }
+
+#### restart all enabled dead units (useful after awakint)
+for unit in $(systemctl list-units $(systemctl list-unit-files --state=enabled | awk "{ print $1 }") \
+ | grep -e dead -e failed | awk "{ print $1 }" ) ; do systemctl restart $unit; done
 
 #### disk usage ####
 alias du1='du -cxhd1'
