@@ -100,6 +100,18 @@ alias lsbup='lsblk -o name,size,fstype,label,uuid,kname,type,partuuid'
 alias flist='declare -F |cut -d" " -f3 | egrep -v "^_"'
 alias fdef='declare -f'
 
+lsiommu() {
+# lsiommu: list members of iommu groups
+    shopt -s nullglob
+    for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
+        echo "IOMMU Group ${g##*/}:"
+        for d in $g/devices/*; do
+            echo -e "\t$(lspci -nns ${d##*/})"
+        done;
+    done;
+    shopt -u nullglob
+}
+
 pname_abs() {
 # pn_abs: get absolute pathname(s) from relative
     pathname=$(readlink -f $1)
@@ -267,7 +279,7 @@ zmt() {
         echo "Note $fs has canmount=off so not mounted represented by empty directory $mp"
         return
     fi
-    zfs snapshot $fs@zmnt-$mp_`date -Iminutes | sed 's/+08:00//'`
+#    zfs snapshot $fs@zmnt-$mp_`date -Iminutes | sed 's/+08:00//'`
     if [ "$(zg_t $fs)" = "snapshot" ] || [ "$(zg_mp $fs)" = "legacy" ]; then
         mount -t zfs $fs $mp
     else
@@ -279,14 +291,18 @@ zmt() {
 # mount -t zfs [-o zfsutil] datasets [recursively] to their name under a root directory
 zma() {
     if [ "$1" = "-R" ]; then
-        rooty="$2"
+        local rooty="$2"
         shift 2
-    else
-        rooty="/z"
+#    else
+#        rooty="/z"
     fi
     fss=$(zfs list -H -o name "$@")
     for fs in $fss; do
-        mpz=$rooty/$fs
+        if [ $rooty ]; then
+            mpz=$rooty$(zg_mp $fs)
+        else
+            mpz=$rooty/$fs
+        fi
         if [ ! "$(cat /proc/self/mounts | egrep -e $mpz)" = "" ]; then
             echo "Mount point $mpz used, not mounting $fs"
             continue
