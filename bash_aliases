@@ -39,7 +39,7 @@ apt-lsn1() { apt list $@ | egrep -e '\[.*\]' -v; egrep -e '^[^/]+' -o; }
 # search for packages with residual-config and purge
 alias apt-rmconf='apt update; apt-get remove --autoremove --purge $(for l in {a..z}; do apt list $l* 2>/dev/null | grep -E -e "\[residual\-config\]" | grep -E -e "^[^/]+" -o; done)'
 
-# display all reverse depends of all manually installed pkgs
+####TODO display all reverse depends of all manually installed pkgs
 #finalrdeps() {
 #    maninstalls=$(apt-mark showmanual | sort | uniq)
 #    for pkg in $maninstalls; do
@@ -80,9 +80,10 @@ wol() {
     esac
 }
 
-#### restart all enabled dead units (useful after awakint)
-for unit in $(systemctl list-units $(systemctl list-unit-files --state=enabled | awk "{ print $1 }") \
- | grep -e dead -e failed | awk "{ print $1 }" ) ; do systemctl restart $unit; done
+
+####TODO restart all enabled dead units (useful after awakint)
+#for unit in $(systemctl list-units $(systemctl list-unit-files --state=enabled | awk "{ print $1 }") \
+# | grep -e dead -e failed | awk "{ print $1 }" ) ; do systemctl restart $unit; done
 
 #### disk usage ####
 alias du1='du -cxhd1'
