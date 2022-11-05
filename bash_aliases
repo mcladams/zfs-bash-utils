@@ -62,20 +62,23 @@ wol() {
     pve20_arrow="e0:69:95:3b:c4:3e"
     pve30_a515="98:28:a6:1a:90:7a"
     pve40_pb470="dc:4a:3e:f0:1e:af"
+    pve50_gamer="d8:50:e6:57:a3:51"
 
     echo "Which PC to wake?"
-    echo "  1) pve10-tower    pve10_tower     192.168.20.10"
+    echo "  1) pve10-tower    $pve10_tower    192.168.20.10"
     echo "  2) pve20-arrow    $pve20_arrow    192.168.20.20"
     echo "  3) pve30-a515     $pve30_a515     192.168.20.30"
     echo "  4) pve40-pb470    $pve40_pb470    192.168.20.40"
-    echo "  5) oldpro"
-    echo "  6) dellbox"
+    echo "  5) pve50-gamer    $pve50_gamer    192.168.20.50"
+    echo "  6) oldpro"
+    echo "  7) dellbox"
     read -n1 input1
     case $input1 in
         (1) /usr/bin/wakeonlan $pve10_tower ;;
         (2) /usr/bin/wakeonlan $pve20_arrow ;;
         (3) /usr/bin/wakeonlan $pve30_a515 ;;
         (4) /usr/bin/wakeonlan $pve40_pb470 ;;
+        (5) /usr/bin/wakeonlan $pve50_gamer ;;
         (Q|q) break ;;
     esac
 }
@@ -115,6 +118,10 @@ lsiommu() {
 
 pname_abs() {
 # pn_abs: get absolute pathname(s) from relative
+    if [ ! -a $1 ]; then
+        echo '"'$1'"' was not found.
+        return
+    fi
     pathname=$(readlink -f $1)
     filename=${pathname##*/}
     path=${pathname%/*}
@@ -150,30 +157,31 @@ rs_mv() {
 
 #### apt,dpkg,etc ####
 deb2xz() {
-    #usage rename default or overwrite origial with --overwrite -w 
-    if ([ "$1" = "-w" ] || [ "$1" = "--overwrite" ]); then
-        overwrite=true
-        shift 1
-    fi
+    set -e
     pkges="$@"
     for pkg in $pkges; do
-        pname=$(echo "$pkg" | sed 's/\.deb//g')
-        files=$(ar -t "$pname".deb)
-        if grep -q "control.tar.xz" <<< $files; then
-            : #echo archive already xz nothing to do
-        else
-            ar -x "$pname".deb
-            zstd -d < control.tar.zst | xz > control.tar.xz
-            zstd -d < data.tar.zst | xz > data.tar.xz
-            if $overwrite; then
-                rm "$pname".deb
-                ar -m -c -a sdsd "$pname".deb debian-binary control.tar.xz data.tar.xz
-            else
-                ar -m -c -a sdsd "$pname"-xz.deb debian-binary control.tar.xz data.tar.xz
-            fi
-            rm debian-binary control.tar.xz data.tar.xz control.tar.zst data.tar.zst
+        if [ ! "${pkg##*.}" = "deb" ] || [ ! -f $pkg ]; then
+            echo '"'$pkg'"' is not a file or does not end in .deb
+            continue
+        elif grep -q "control.tar.xz" <<< $files; then
+            echo '"'$pkg'"' is already in tar.xz format, not touching it.
+            continue
         fi
+        pathname=$(readlink -f $pkg)
+        path=${pathname%/*}
+        filename=${pathname##*/}
+        pkgname=${filename%.*}
+        # do it in a tmp dir
+        mkdir /tmp/$pkgname
+        pushd /tmp/$pkgname
+        ar -x $pathname
+        zstd -d < control.tar.zst | xz > control.tar.xz
+        zstd -d < data.tar.zst | xz > data.tar.xz
+        mv $pathname /tmp/$filename
+        ar -m -c -a sdsd $pathname debian-binary control.tar.xz data.tar.xz
+        popd
     done
+    echo "Done. Original debs move to /tmp"
 }
 
 mnt() {
@@ -393,3 +401,4 @@ underscore() {
 # systemd-sysv systemd-oomd systemd-container zfsutils-linux zfs-zed \
 # grub-efi-amd64 grub-pc-bin
 
+alias zsnap_large='zfs list -o used,name -t snapshot | sort -h | tail' 
