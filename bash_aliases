@@ -272,6 +272,69 @@ alias zg_cm='zfs list -H -o canmount'
 alias zm='mount -t zfs -o zfsutil'
 alias zu='umount -t zfs'
 
+# mount all canmount=noauto mounts
+zm_na () 
+{ 
+    for d in $(zfs list -Ho name,canmount -r $@ | grep noauto | awk '{ print $1 }');
+    do
+        zfs mount $d;
+    done
+}
+
+# mount all canmount=noauto mounts and change to canmount=on
+zm_na_on () 
+{ 
+    for d in $(zfs list -Ho name,canmount -r $@ | grep noauto | awk '{ print $1 }');
+    do
+        zfs set canmount=on $d;
+        zfs mount $d;
+    done
+}
+
+# mount all canmount=on mounts and change to noauto
+zm_on_na () 
+{ 
+    for d in $(zfs list -Ho name,canmount -r $@ | grep -E -e 'on$' | awk '{ print $1 }');
+    do
+        zfs set canmount=noauto $d;
+        zfs mount $d;
+    done
+}
+
+# unmount all currently mounted
+zu_mt () 
+{ 
+    zmnts=$(zfs mount)
+    for d in $(zfs list -Ho name,mounted -r $@ | grep -E -e 'yes$' | awk '{ print $1 }');
+    do
+        mtpt=$(echo "$zmnts" | grep "$d " | awk '{ print $2 }');
+        umount -lf $mtpt;
+    done
+}
+
+# unmount all currently mounted and set canmount noauto
+zu_mt_na () 
+{ 
+    zmnts=$(zfs mount)
+    for d in $(zfs list -Ho name,mounted -r $@ | grep -E -e 'yes$' | awk '{ print $1 }');
+    do
+        zfs set canmount=noauto $d;
+        mtpt=$(echo "$zmnts" | grep "$d " | awk '{ print $2 }');
+        umount -lf $mtpt;
+    done
+}
+
+
+
+# create zfs-list.cache file $1=pool $2=save location
+zls_gen () 
+{ 
+    zfs list -Ho name,mountpoint,canmount,atime,relatime,devices,exec,readonly,setuid,nbmand,encroot,keylocation,org.openzfs.systemd:requires,org.openzfs.systemd:requires-mounts-for,org.openzfs.systemd:before,org.openzfs.systemd:after,org.openzfs.systemd:wanted-by,org.openzfs.systemd:required-by,org.openzfs.systemd:nofail,org.openzfs.systemd:ignore \
+     -r $1 > "$2"
+}
+
+
+
 zmt() {
     fs=$1
     mp=$2
