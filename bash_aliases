@@ -31,10 +31,15 @@ alias upg='apt update && apt upgrade -y && apt autoremove -y && apt autoclean'
 alias upgf='apt update && apt upgrade -y && apt full-upgrade -y && apt autoremove -y && apt autoclean'
 alias apt-nir='apt install --no-install-recommends'
 alias apt-arp='apt remove --autoremove --purge'
-apt-lsi() { apt list $@ | egrep -e '\[.*\]'; }
-apt-lsi1() { apt list $@ | egrep -e '\[.*\]'; egrep -e '^[^/]+' -o; }
-apt-lsn() { apt list $@ | egrep -e '\[.*\]' -v; }
-apt-lsn1() { apt list $@ | egrep -e '\[.*\]' -v; egrep -e '^[^/]+' -o; }
+apt_lsi() { apt list $@ | egrep -e '\[.*\]'; }
+apt_lsi1() { apt list $@ | egrep -e '\[.*\]' | egrep -e '^[^/]+' -o; }
+apt_lsn() { apt list $@ | egrep -e '\[.*\]' -v; }
+apt_lsn1() { apt list $@ | egrep -e '\[.*\]' -v | egrep -e '^[^/]+' -o; }
+
+# sort a list of installed packages by size, or all installed packages with no passed parameter
+pkg_sizes() {
+    dpkg-query -Wf '${Installed-Size}\t${Package}\n' "$@" | sort -n
+}
 
 # search for packages with residual-config and purge
 alias apt-rmconf='apt update; apt-get remove --autoremove --purge $(for l in {a..z}; do apt list $l* 2>/dev/null | grep -E -e "\[residual\-config\]" | grep -E -e "^[^/]+" -o; done)'
