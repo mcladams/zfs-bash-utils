@@ -1,0 +1,26 @@
+#!/bin/sh
+# mv-ln ["source, source.."] [destination]: move file(s) and replace with symlink to new location
+# v1 : CASE if a dotfile, moved file has no dot
+
+sources=$1  # no quotes so globs expanded
+destin=$2
+
+# now canonicalize only if existing for source, can be missing for dest
+fulldest=$(readlink -m $2)
+pathnames=$(for f in $sources; do readlink -e $f; done)
+
+# DONT get the last part which will be either dir or file
+# lasts=$(for p in $pathnames; do echo ${p##/*/}; done)
+# DONT for l in $lasts; do
+
+for p in $pathnames; do
+    if [ "$(echo ${p##/*/} | cut -c -1)" = "." ]; then
+        nodot=$(echo ${p##/*/} | cut -c 2-)
+        q=${p%/*}/$nodot
+        mv $p $fulldest/$nodot
+        ln -s $fulldest/$nodot $p
+    else
+        mv $p $fulldest/${p##/*/}
+        ln -s $fulldest/${p##/*/} $p
+    fi
+done

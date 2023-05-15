@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+(return 0 2>/dev/null) && sourced=yes || sourced=""
+
+lstfmt() {
+#  Takes any string(s) and returns words deparated with CR
+#  KISS no need to complicate with files
+#  if [ -f "$1" ]; then files=yes; fi
+  str="$@"
+  str="${str//$'\n'/ }"
+  strf=$(sed -E -e 's/^[[:space:]]+//g' -e 's/[[:space:]]+/ /g' -e 's/[[:space:]]+$//g' -e 's/ /\n/g' <<<$str)
+  echo "$strf"
+} 
+
+ubuonly() {
+  rdls=$(lstfmt `cat $1`)
+  cmps=$(lstfmt `cat $2`)
+  lstCLRset=$cmps
+  lstUBUset=$rdls
+  lstUBUonly=""
+  while IFS='=' read opt val; do
+    unset IFS
+    if grep $opt <<<$lstCLRset; then
+      :
+    else
+      lstUBUonly+=$'\n'"$opt=$val"
+    fi
+  done < $1
+  unset IFS
+  lstUBUonly=$(lstfmt "$lstUBUonly")
+  echo "$lstUBUonly" > cnfUBUonly
+}
+
+cmp() {
+  rdls=`cat $1`
+  cmps=`cat $2`
+  lstAgree=""
+  lstCLRonly=$cmps
+    lstCLRonly=$(lstfmt "$lstCLRonly")
+  lstUBUonly=""
+  lstCLRdiff=""
+  lstUBUdiff=""
+  declare -i j=0
+  while IFS='=' read opt val; do
+    unset IFS
+    if grep $opt <<<$lstCLRonly; then
+      if lstAgree+=$'\n'$(grep $opt=$val <<<$lstCLRonly); then
+        :
+      else
+        lstCLRdiff+=$'\n'$(grep $opt=.* <<<$lstCLRonly)
+        lstUBUdiff+=$'\n'"$opt=$val"
+      fi
+      lstCLRonly=$(grep $opt=.* -v <<<$lstCLRonly)
+      listCLRonly=$(lstfmt "$lstCLRonly")
+      lstUBUonly+=$'\n'"$opt=$val"  ##oops
+    fi
+#    lstUBUonly+=$'\n'"$opt=$val"
+    j=j+1
+#    echo $lstCLRdiff
+#    if [ "$j" = "200" ]; then break; fi
+  done < $1
+  unset IFS
+  lstAgree=$(lstfmt "$lstAgree")
+  lstCLRdiff=$(lstfmt "$lstCLRdiff")
+  lstUBUdiff=$(lstfmt "$lstUBUdiff")
+  lstUBUonly=$(lstfmt "$lstUBUonly")
+  lstCLRonly=$(lstfmt "$lstCLRonly")
+  echo "$lstAgree" > cnfAgree
+  echo "$lstCLRdiff" > cnfCLRdiff
+  echo "$lstUBUdiff" > cnfUBUdiff
+  echo "$lstUBUonly" > cnfUBUonly
+  echo "$lstCLRonly" > cnfCLRonly
+}
+
+if [ ! $sourced ]; then
+file1=$1
+file2=$2
+cmp $file1 $file2
+#echo "$lstAgree" > cnfAgree
+#echo "$lstCLRdiff" > cnfCLRdiff
+#echo "$lstUBUdiff" > cnfUBUdiff
+#echo "$lstUBUonly" > cnfUBUonly
+#echo "$lstCLRonly" > cnfCLRonly
+#batcat cnfAgree cnfCLRdiff cnfUBUdiff cnfUBUonly cnfCLRonly
+fi

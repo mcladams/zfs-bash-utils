@@ -1,0 +1,69 @@
+root@gamer:/# zpool status -v
+  pool: vault
+ state: ONLINE
+status: One or more devices could not be used because the label is missing or
+	invalid.  Sufficient replicas exist for the pool to continue
+	functioning in a degraded state.
+action: Replace the device using 'zpool replace'.
+   see: https://openzfs.github.io/openzfs-docs/msg/ZFS-8000-4J
+  scan: scrub canceled on Fri May 12 20:10:49 2023
+config:
+
+	NAME                                      STATE     READ WRITE CKSUM
+	vault                                     ONLINE       0     0     0
+	  mirror-0                                ONLINE       0     0     0
+	    938fa122-5842-11ed-9ba6-aa5470e84b5c  ONLINE       0     0     0
+	    5ade3183-3c22-4dd7-8aa1-ff57f50aea3e  ONLINE       0     0     0
+	logs	
+	  4e072a66-76ee-4b99-8b96-3aa6504050a6    ONLINE       0     0     0
+	  4080af98-3281-4768-96c3-e5025ef7faad    ONLINE       0     0     0
+	cache
+	  Harddisk0Partition7                     UNAVAIL      0     0     0
+	  Harddisk1Partition13                    UNAVAIL      0     0     0
+
+errors: No known data errors
+
+zpool export vault
+
+# zpool import -d /dev/disk/by-partuuid
+   pool: vault
+     id: 14273554574610766788
+  state: ONLINE
+status: One or more devices contains corrupted data.
+ action: The pool can be imported using its name or numeric identifier.
+   see: https://openzfs.github.io/openzfs-docs/msg/ZFS-8000-4J
+ config:
+
+	vault                                     ONLINE
+	  mirror-0                                ONLINE
+	    938fa122-5842-11ed-9ba6-aa5470e84b5c  ONLINE
+	    5ade3183-3c22-4dd7-8aa1-ff57f50aea3e  ONLINE
+	cache
+	  7ed9cb54-322e-4d8a-9121-749b681569c2
+	  d6a2272d-855b-4f57-82be-b7edcbf1cc20
+	logs	
+	  4e072a66-76ee-4b99-8b96-3aa6504050a6    ONLINE
+	  4080af98-3281-4768-96c3-e5025ef7faad    ONLINE
+
+#sad;lfkj
+
+# zpool status -v vault
+  pool: vault
+ state: ONLINE
+  scan: scrub canceled on Fri May 12 20:10:49 2023
+config:
+
+	NAME                                      STATE     READ WRITE CKSUM
+	vault                                     ONLINE       0     0     0
+	  mirror-0                                ONLINE       0     0     0
+	    938fa122-5842-11ed-9ba6-aa5470e84b5c  ONLINE       0     0     0
+	    5ade3183-3c22-4dd7-8aa1-ff57f50aea3e  ONLINE       0     0     0
+	logs	
+	  4e072a66-76ee-4b99-8b96-3aa6504050a6    ONLINE       0     0     0
+	  4080af98-3281-4768-96c3-e5025ef7faad    ONLINE       0     0     0
+	cache
+	  sda7                                    ONLINE       0     0     0
+	  sdb13                                   ONLINE       0     0     0
+
+errors: No known data errors
+
