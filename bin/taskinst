@@ -1,0 +1,76 @@
+#! /usr/bin/env bash
+
+set -e
+
+prereqs="curl lsb-release wget"
+
+# Remove all i386 packages from multilib system (optional)
+function rm_i386() {
+    if [[ ! $(dpkg --print-foreign-architectures) = *i386* ]]; then
+        return
+    else
+        local pkgs=$( apt list | grep ' i386 ' | grep -E -e '^[^/]*')
+        sudo apt purge --allow-remove-essential $(echo "$pkgs" | sed -E 's/^(.*)$/\1:i386/g')
+    fi
+    sudo dpkg --remove-architecture i386
+]
+
+# Install dependencies not already installed, checking when last apt update
+# https://unix.stackexchange.com/questions/235605/check-if-all-listed-packages-are-installed-in-bash
+function inst_deps() {
+    local deps="$@"
+    # apt list returns a line for each architecture if foreign architectures
+    # so filter by our architecture or all to remove
+    local pkgs=$(apt list $deps | grep -e " $(dpkg --print-architecture)" -e ' all' \
+        | grep -e 'installed' -e 'upgradable' -v | grep -E -e '^[^/]*')
+    if [ -z $pkgs ]; then return; fi
+    # only apt update if it has not been run in the last hour
+    if [ $(( `date +%s` - `stat -c %Y /var/lib/apt/periodic/update-success-stamp` )) \
+        -gt 3600 ]; then sudo apt update; fi
+    sudo apt install -y $pkgs
+}
+
+# Install deb-get (by script via curl) to install DEBs from git repos & direct dl
+# https://github.com/wimpysworld/deb-get
+function inst_debget() {
+    curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get \
+        | sudo -E bash -s install deb-get
+}
+
+# Install gitub CLI and setup git for authentication using it
+# Ref: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+function inst_gh {
+#    type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+    curl -fsSL https://cli.github.com/packages/githubcli-archive=-keyring.gpg \
+        | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+    sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+        | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    sudo apt update
+    sudo apt install gh -y
+    gh auth login
+    gh auth git setup-git
+    gh config set editor nano
+    gh config set git_protocol https --host github.com
+}
+
+# Install makedeb from repo
+function inst_makedeb() {
+    local deps="apt binutils build-essential curl fakeroot file gettext gawk \
+        libarchive-tools lsb-release python3 python3-apt zstd"
+
+
+# Install latest Neovim from githiub using makedeb
+function inst_neovim() {
+    mkdir -p /usr/local/git/org.makedeb.mpr
+    cd /usr/local/git/org.makedeb.mpr
+    git clone https://mpr.makedeb.org/neovim
+}
+
+# Apply functions as necessary
+inst_list
+inst_debget
+type -p gh >/dev/null || (echo "Installing gh from githuibcli-archive..." && inst_gh)
+type -p makedeb >/dev/null || (echo "Installing makedeb with deb-get..." && deb-get install makedeb)
+type -p nvim >/dev/null ||
+#type -p nvim >/dev/null || (echo "Installing neovim..." && "Done" )

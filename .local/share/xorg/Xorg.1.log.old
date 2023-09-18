@@ -1,0 +1,673 @@
+[  1169.800] _XSERVTransSocketUNIXCreateListener: ...SocketCreateListener() failed
+[  1169.800] _XSERVTransMakeAllCOTSServerListeners: server already running
+[  1169.802] (--) Log file renamed from "/home/mike/.local/share/xorg/Xorg.pid-3242.log" to "/home/mike/.local/share/xorg/Xorg.1.log"
+[  1169.802] 
+X.Org X Server 1.21.1.7
+X Protocol Version 11, Revision 0
+[  1169.802] Current Operating System: Linux A515-mantic-zsys 6.5.0-5-generic #5-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep  6 15:11:07 UTC 2023 x86_64
+[  1169.802] Kernel command line: BOOT_IMAGE=/BOOT/ubuntu_9cvh0z@/vmlinuz-6.5.0-5-generic root=ZFS=rpool/ROOT/ubuntu_9cvh0z ro intel_iommu=on iommu=pt kvm_intel.nested=1
+[  1169.802] xorg-server 2:21.1.7-3ubuntu2 (For technical support please see http://www.ubuntu.com/support) 
+[  1169.802] Current version of pixman: 0.42.2
+[  1169.802] 	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+[  1169.802] Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[  1169.803] (==) Log file: "/home/mike/.local/share/xorg/Xorg.1.log", Time: Mon Sep 18 16:58:02 2023
+[  1169.803] (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+[  1169.803] (==) ServerLayout "layout"
+[  1169.803] (==) No screen section available. Using defaults.
+[  1169.803] (**) |-->Screen "Default Screen Section" (0)
+[  1169.803] (**) |   |-->Monitor "<default monitor>"
+[  1169.804] (==) No monitor specified for screen "Default Screen Section".
+	Using a default monitor configuration.
+[  1169.804] (==) Automatically adding devices
+[  1169.804] (==) Automatically enabling devices
+[  1169.804] (==) Automatically adding GPU devices
+[  1169.804] (==) Automatically binding GPU devices
+[  1169.804] (==) Max clients allowed: 256, resource mask: 0x1fffff
+[  1169.804] (WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+[  1169.804] 	Entry deleted from font path.
+[  1169.804] (WW) The directory "/usr/share/fonts/X11/100dpi/" does not exist.
+[  1169.804] 	Entry deleted from font path.
+[  1169.804] (WW) The directory "/usr/share/fonts/X11/75dpi/" does not exist.
+[  1169.804] 	Entry deleted from font path.
+[  1169.804] (WW) The directory "/usr/share/fonts/X11/100dpi" does not exist.
+[  1169.804] 	Entry deleted from font path.
+[  1169.804] (WW) The directory "/usr/share/fonts/X11/75dpi" does not exist.
+[  1169.804] 	Entry deleted from font path.
+[  1169.804] (==) FontPath set to:
+	/usr/share/fonts/X11/misc,
+	/usr/share/fonts/X11/Type1,
+	built-ins
+[  1169.804] (==) ModulePath set to "/usr/lib/xorg/modules"
+[  1169.804] (II) The server relies on udev to provide the list of input devices.
+	If no devices become available, reconfigure udev or disable AutoAddDevices.
+[  1169.804] (II) Loader magic: 0x55a9946df020
+[  1169.804] (II) Module ABI versions:
+[  1169.804] 	X.Org ANSI C Emulation: 0.4
+[  1169.804] 	X.Org Video Driver: 25.2
+[  1169.804] 	X.Org XInput driver : 24.4
+[  1169.804] 	X.Org Server Extension : 10.0
+[  1169.805] (++) using VT number 2
+
+[  1169.806] (II) systemd-logind: took control of session /org/freedesktop/login1/session/_32
+[  1169.807] (II) xfree86: Adding drm device (/dev/dri/card0)
+[  1169.807] (II) Platform probe for /sys/devices/pci0000:00/0000:00:02.0/drm/card0
+[  1169.808] (II) systemd-logind: got fd for /dev/dri/card0 226:0 fd 15 paused 0
+[  1169.808] (II) xfree86: Adding drm device (/dev/dri/card1)
+[  1169.808] (II) Platform probe for /sys/devices/pci0000:00/0000:00:1c.0/0000:01:00.0/drm/card1
+[  1169.809] (II) systemd-logind: got fd for /dev/dri/card1 226:1 fd 16 paused 0
+[  1169.810] (**) OutputClass "nvidia" ModulePath extended to "/usr/lib/x86_64-linux-gnu/nvidia/xorg,/usr/lib/xorg/modules"
+[  1169.812] (--) PCI:*(0@0:2:0) 8086:5917:1025:1193 rev 7, Mem @ 0xb2000000/16777216, 0xc0000000/268435456, I/O @ 0x00005000/64, BIOS @ 0x????????/131072
+[  1169.812] (--) PCI: (1@0:0:0) 10de:174d:1025:119a rev 162, Mem @ 0xb3000000/16777216, 0xa0000000/268435456, 0xb0000000/33554432, I/O @ 0x00004000/128
+[  1169.812] (II) LoadModule: "glx"
+[  1169.812] (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+[  1169.813] (II) Module glx: vendor="X.Org Foundation"
+[  1169.813] 	compiled for 1.21.1.7, module version = 1.0.0
+[  1169.813] 	ABI class: X.Org Server Extension, version 10.0
+[  1169.813] (II) Applying OutputClass "nvidia" to /dev/dri/card1
+[  1169.813] 	loading driver: nvidia
+[  1169.923] (==) Matched nvidia as autoconfigured driver 0
+[  1169.923] (==) Matched nouveau as autoconfigured driver 1
+[  1169.923] (==) Matched modesetting as autoconfigured driver 2
+[  1169.923] (==) Matched fbdev as autoconfigured driver 3
+[  1169.923] (==) Matched vesa as autoconfigured driver 4
+[  1169.923] (==) Assigned the driver to the xf86ConfigLayout
+[  1169.923] (II) LoadModule: "nvidia"
+[  1169.923] (II) Loading /usr/lib/x86_64-linux-gnu/nvidia/xorg/nvidia_drv.so
+[  1169.924] (II) Module nvidia: vendor="NVIDIA Corporation"
+[  1169.924] 	compiled for 1.6.99.901, module version = 1.0.0
+[  1169.924] 	Module class: X.Org Video Driver
+[  1169.924] (II) LoadModule: "nouveau"
+[  1169.924] (II) Loading /usr/lib/xorg/modules/drivers/nouveau_drv.so
+[  1169.924] (II) Module nouveau: vendor="X.Org Foundation"
+[  1169.924] 	compiled for 1.21.1.3, module version = 1.0.17
+[  1169.925] 	Module class: X.Org Video Driver
+[  1169.925] 	ABI class: X.Org Video Driver, version 25.2
+[  1169.925] (II) LoadModule: "modesetting"
+[  1169.925] (II) Loading /usr/lib/xorg/modules/drivers/modesetting_drv.so
+[  1169.925] (II) Module modesetting: vendor="X.Org Foundation"
+[  1169.925] 	compiled for 1.21.1.7, module version = 1.21.1
+[  1169.925] 	Module class: X.Org Video Driver
+[  1169.925] 	ABI class: X.Org Video Driver, version 25.2
+[  1169.925] (II) LoadModule: "fbdev"
+[  1169.925] (II) Loading /usr/lib/xorg/modules/drivers/fbdev_drv.so
+[  1169.925] (II) Module fbdev: vendor="X.Org Foundation"
+[  1169.925] 	compiled for 1.21.1.3, module version = 0.5.0
+[  1169.925] 	Module class: X.Org Video Driver
+[  1169.925] 	ABI class: X.Org Video Driver, version 25.2
+[  1169.925] (II) LoadModule: "vesa"
+[  1169.926] (II) Loading /usr/lib/xorg/modules/drivers/vesa_drv.so
+[  1169.926] (II) Module vesa: vendor="X.Org Foundation"
+[  1169.926] 	compiled for 1.21.1.3, module version = 2.5.0
+[  1169.926] 	Module class: X.Org Video Driver
+[  1169.926] 	ABI class: X.Org Video Driver, version 25.2
+[  1169.926] (II) NVIDIA dlloader X Driver  535.104.05  Sat Aug 19 01:01:11 UTC 2023
+[  1169.926] (II) NVIDIA Unified Driver for all Supported NVIDIA GPUs
+[  1169.926] (II) NOUVEAU driver Date:   Sat Jan 23 12:24:42 2021 -0500
+[  1169.926] (II) NOUVEAU driver for NVIDIA chipset families :
+[  1169.926] 	RIVA TNT            (NV04)
+[  1169.926] 	RIVA TNT2           (NV05)
+[  1169.926] 	GeForce 256         (NV10)
+[  1169.926] 	GeForce 2           (NV11, NV15)
+[  1169.927] 	GeForce 4MX         (NV17, NV18)
+[  1169.927] 	GeForce 3           (NV20)
+[  1169.927] 	GeForce 4Ti         (NV25, NV28)
+[  1169.927] 	GeForce FX          (NV3x)
+[  1169.927] 	GeForce 6           (NV4x)
+[  1169.927] 	GeForce 7           (G7x)
+[  1169.927] 	GeForce 8           (G8x)
+[  1169.928] 	GeForce 9           (G9x)
+[  1169.928] 	GeForce GTX 2xx/3xx (GT2xx)
+[  1169.928] 	GeForce GTX 4xx/5xx (GFxxx)
+[  1169.928] 	GeForce GTX 6xx/7xx (GKxxx)
+[  1169.928] 	GeForce GTX 9xx     (GMxxx)
+[  1169.928] 	GeForce GTX 10xx    (GPxxx)
+[  1169.928] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
+[  1169.928] (II) FBDEV: driver for framebuffer: fbdev
+[  1169.928] (II) VESA: driver for VESA chipsets: vesa
+[  1169.928] xf86EnableIO: failed to enable I/O ports 0000-03ff (Operation not permitted)
+[  1169.928] (II) modeset(0): using drv /dev/dri/card0
+[  1169.928] (WW) Falling back to old probe method for fbdev
+[  1169.929] (II) Loading sub module "fbdevhw"
+[  1169.929] (II) LoadModule: "fbdevhw"
+[  1169.929] (II) Loading /usr/lib/xorg/modules/libfbdevhw.so
+[  1169.929] (II) Module fbdevhw: vendor="X.Org Foundation"
+[  1169.929] 	compiled for 1.21.1.7, module version = 0.0.2
+[  1169.929] 	ABI class: X.Org Video Driver, version 25.2
+[  1169.929] (EE) open /dev/fb0: Permission denied
+[  1169.929] (II) systemd-logind: releasing fd for 226:1
+[  1169.930] (II) Loading sub module "fb"
+[  1169.930] (II) LoadModule: "fb"
+[  1169.930] (II) Module "fb" already built-in
+[  1169.930] (II) Loading sub module "wfb"
+[  1169.930] (II) LoadModule: "wfb"
+[  1169.930] (II) Loading /usr/lib/xorg/modules/libwfb.so
+[  1169.930] (II) Module wfb: vendor="X.Org Foundation"
+[  1169.930] 	compiled for 1.21.1.7, module version = 1.0.0
+[  1169.930] 	ABI class: X.Org ANSI C Emulation, version 0.4
+[  1169.931] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support
+[  1169.931] (II) modeset(0): Creating default Display subsection in Screen section
+	"Default Screen Section" for depth/fbbpp 24/32
+[  1169.931] (==) modeset(0): Depth 24, (==) framebuffer bpp 32
+[  1169.931] (==) modeset(0): RGB weight 888
+[  1169.931] (==) modeset(0): Default visual is TrueColor
+[  1169.931] (II) Loading sub module "glamoregl"
+[  1169.931] (II) LoadModule: "glamoregl"
+[  1169.931] (II) Loading /usr/lib/xorg/modules/libglamoregl.so
+[  1169.934] (II) Module glamoregl: vendor="X.Org Foundation"
+[  1169.934] 	compiled for 1.21.1.7, module version = 1.0.1
+[  1169.934] 	ABI class: X.Org ANSI C Emulation, version 0.4
+[  1169.978] (II) modeset(0): glamor X acceleration enabled on Mesa Intel(R) UHD Graphics 620 (KBL GT2)
+[  1169.978] (II) modeset(0): glamor initialized
+[  1169.978] (==) modeset(0): VariableRefresh: disabled
+[  1169.978] (==) modeset(0): AsyncFlipSecondaries: disabled
+[  1169.980] (II) modeset(0): Output eDP-1 has no monitor section
+[  1169.983] (II) modeset(0): Output HDMI-1 has no monitor section
+[  1169.985] (II) modeset(0): EDID for output eDP-1
+[  1169.985] (II) modeset(0): Manufacturer: BOE  Model: 672  Serial#: 0
+[  1169.985] (II) modeset(0): Year: 2015  Week: 1
+[  1169.985] (II) modeset(0): EDID Version: 1.4
+[  1169.985] (II) modeset(0): Digital Display Input
+[  1169.985] (II) modeset(0): 6 bits per channel
+[  1169.985] (II) modeset(0): Digital interface is DisplayPort
+[  1169.985] (II) modeset(0): Max Image Size [cm]: horiz.: 34  vert.: 19
+[  1169.985] (II) modeset(0): Gamma: 2.20
+[  1169.985] (II) modeset(0): No DPMS capabilities specified
+[  1169.985] (II) modeset(0): Supported color encodings: RGB 4:4:4 
+[  1169.985] (II) modeset(0): First detailed timing is preferred mode
+[  1169.985] (II) modeset(0): Preferred mode is native pixel format and refresh rate
+[  1169.985] (II) modeset(0): redX: 0.590 redY: 0.350   greenX: 0.329 greenY: 0.555
+[  1169.985] (II) modeset(0): blueX: 0.152 blueY: 0.118   whiteX: 0.312 whiteY: 0.328
+[  1169.985] (II) modeset(0): Manufacturer's mask: 0
+[  1169.985] (II) modeset(0): Supported detailed timing:
+[  1169.985] (II) modeset(0): clock: 72.3 MHz   Image Size:  344 x 194 mm
+[  1169.986] (II) modeset(0): h_active: 1366  h_sync: 1414  h_sync_end 1446 h_blank_end 1526 h_border: 0
+[  1169.986] (II) modeset(0): v_active: 768  v_sync: 771  v_sync_end 777 v_blanking: 790 v_border: 0
+[  1169.986] (II) modeset(0):  BOE CQ
+[  1169.986] (II) modeset(0):  NT156WHM-N32
+[  1169.986] (II) modeset(0): EDID (in hex):
+[  1169.986] (II) modeset(0): 	00ffffffffffff0009e5720600000000
+[  1169.986] (II) modeset(0): 	01190104952213780224109759548e27
+[  1169.986] (II) modeset(0): 	1e505400000001010101010101010101
+[  1169.986] (II) modeset(0): 	0101010101013e1c56a0500016303020
+[  1169.986] (II) modeset(0): 	360058c21000001a0000000000000000
+[  1169.986] (II) modeset(0): 	00000000000000000000000000fe0042
+[  1169.986] (II) modeset(0): 	4f452043510a202020202020000000fe
+[  1169.986] (II) modeset(0): 	004e5431353657484d2d4e33320a002a
+[  1169.986] (II) modeset(0): Printing probed modes for output eDP-1
+[  1169.986] (II) modeset(0): Modeline "1366x768"x60.0   72.30  1366 1414 1446 1526  768 771 777 790 +hsync -vsync (47.4 kHz eP)
+[  1169.986] (II) modeset(0): Modeline "1280x720"x60.0   63.99  1280 1328 1360 1440  720 723 728 741 +hsync -vsync (44.4 kHz d)
+[  1169.986] (II) modeset(0): Modeline "1024x768"x60.0   64.97  1024 1048 1184 1344  768 771 777 806 -hsync -vsync (48.3 kHz d)
+[  1169.986] (II) modeset(0): Modeline "960x720"x60.0  116.95  960 1024 1128 1300  720 720 722 750 doublescan -hsync +vsync (90.0 kHz d)
+[  1169.986] (II) modeset(0): Modeline "928x696"x60.0  109.01  928 976 1088 1264  696 696 698 719 doublescan -hsync +vsync (86.2 kHz d)
+[  1169.986] (II) modeset(0): Modeline "896x672"x60.0  102.33  896 960 1060 1224  672 672 674 697 doublescan -hsync +vsync (83.6 kHz d)
+[  1169.986] (II) modeset(0): Modeline "1024x576"x60.0   42.11  1024 1072 1104 1184  576 579 584 593 +hsync -vsync (35.6 kHz d)
+[  1169.986] (II) modeset(0): Modeline "960x600"x60.0   76.97  960 984 1000 1040  600 601 604 617 doublescan +hsync -vsync (74.0 kHz d)
+[  1169.986] (II) modeset(0): Modeline "960x540"x60.0   37.35  960 1008 1040 1120  540 543 548 556 +hsync -vsync (33.3 kHz d)
+[  1169.987] (II) modeset(0): Modeline "800x600"x60.0   38.38  800 824 896 1024  600 601 603 625 +hsync +vsync (37.5 kHz d)
+[  1169.987] (II) modeset(0): Modeline "840x525"x60.0   59.59  840 864 880 920  525 526 529 540 doublescan +hsync -vsync (64.8 kHz d)
+[  1169.987] (II) modeset(0): Modeline "864x486"x60.0   30.71  864 912 944 1024  486 489 494 500 +hsync -vsync (30.0 kHz d)
+[  1169.987] (II) modeset(0): Modeline "700x525"x60.0   61.00  700 744 820 940  525 526 532 541 doublescan +hsync +vsync (64.9 kHz d)
+[  1169.987] (II) modeset(0): Modeline "800x450"x60.0   48.87  800 824 840 880  450 451 454 463 doublescan +hsync -vsync (55.5 kHz d)
+[  1169.987] (II) modeset(0): Modeline "640x512"x60.0   53.96  640 664 720 844  512 512 514 533 doublescan +hsync +vsync (63.9 kHz d)
+[  1169.987] (II) modeset(0): Modeline "700x450"x60.0   43.32  700 724 740 780  450 451 456 463 doublescan +hsync -vsync (55.5 kHz d)
+[  1169.987] (II) modeset(0): Modeline "640x480"x60.0   25.19  640 656 752 800  480 490 492 525 -hsync -vsync (31.5 kHz d)
+[  1169.987] (II) modeset(0): Modeline "720x405"x60.0   22.11  720 768 800 880  405 408 413 419 +hsync -vsync (25.1 kHz d)
+[  1169.987] (II) modeset(0): Modeline "684x384"x60.0   36.20  684 708 724 764  384 385 390 395 doublescan +hsync -vsync (47.4 kHz d)
+[  1169.987] (II) modeset(0): Modeline "640x360"x60.0   17.94  640 688 720 800  360 363 368 374 +hsync -vsync (22.4 kHz d)
+[  1169.987] (II) modeset(0): Modeline "512x384"x60.0   32.48  512 524 592 672  384 385 388 403 doublescan -hsync -vsync (48.3 kHz d)
+[  1169.987] (II) modeset(0): Modeline "512x288"x60.0   21.02  512 536 552 592  288 289 292 296 doublescan +hsync -vsync (35.5 kHz d)
+[  1169.987] (II) modeset(0): Modeline "480x270"x60.0   18.67  480 504 520 560  270 271 274 278 doublescan +hsync -vsync (33.3 kHz d)
+[  1169.987] (II) modeset(0): Modeline "400x300"x60.0   19.16  400 412 448 512  300 300 301 312 doublescan +hsync +vsync (37.4 kHz d)
+[  1169.987] (II) modeset(0): Modeline "432x243"x60.0   15.35  432 456 472 512  243 244 247 250 doublescan +hsync -vsync (30.0 kHz d)
+[  1169.987] (II) modeset(0): Modeline "320x240"x60.0   12.57  320 328 376 400  240 245 246 262 doublescan -hsync -vsync (31.4 kHz d)
+[  1169.987] (II) modeset(0): Modeline "360x202"x60.0   11.03  360 384 400 440  202 204 206 209 doublescan +hsync -vsync (25.1 kHz d)
+[  1169.987] (II) modeset(0): Modeline "320x180"x60.0    8.97  320 344 360 400  180 181 184 187 doublescan +hsync -vsync (22.4 kHz d)
+[  1169.990] (II) modeset(0): EDID for output HDMI-1
+[  1169.990] (II) modeset(0): Output eDP-1 connected
+[  1169.990] (II) modeset(0): Output HDMI-1 disconnected
+[  1169.990] (II) modeset(0): Using exact sizes for initial modes
+[  1169.991] (II) modeset(0): Output eDP-1 using initial mode 1366x768 +0+0
+[  1169.991] (==) modeset(0): Using gamma correction (1.0, 1.0, 1.0)
+[  1169.991] (==) modeset(0): DPI set to (96, 96)
+[  1169.991] (II) Loading sub module "fb"
+[  1169.991] (II) LoadModule: "fb"
+[  1169.991] (II) Module "fb" already built-in
+[  1169.991] (==) NVIDIA(G0): Depth 24, (==) framebuffer bpp 32
+[  1169.991] (==) NVIDIA(G0): RGB weight 888
+[  1169.991] (==) NVIDIA(G0): Default visual is TrueColor
+[  1169.991] (==) NVIDIA(G0): Using gamma correction (1.0, 1.0, 1.0)
+[  1169.991] (**) Option "AllowNVIDIAGpuScreens"
+[  1169.991] (II) Applying OutputClass "nvidia" options to /dev/dri/card1
+[  1169.991] (**) NVIDIA(G0): Option "AllowEmptyInitialConfiguration"
+[  1169.991] (**) NVIDIA(G0): Enabling 2D acceleration
+[  1169.991] (II) Loading sub module "glxserver_nvidia"
+[  1169.991] (II) LoadModule: "glxserver_nvidia"
+[  1169.991] (II) Loading /usr/lib/x86_64-linux-gnu/nvidia/xorg/libglxserver_nvidia.so
+[  1170.007] (II) Module glxserver_nvidia: vendor="NVIDIA Corporation"
+[  1170.007] 	compiled for 1.6.99.901, module version = 1.0.0
+[  1170.007] 	Module class: X.Org Server Extension
+[  1170.007] (II) NVIDIA GLX Module  535.104.05  Sat Aug 19 01:06:04 UTC 2023
+[  1170.007] (II) NVIDIA: The X server supports PRIME Render Offload.
+[  1170.009] (II) NVIDIA(G0): NVIDIA GPU NVIDIA GeForce MX130 (GM108-B) at PCI:1:0:0
+[  1170.009] (II) NVIDIA(G0):     (GPU-0)
+[  1170.009] (--) NVIDIA(G0): Memory: 2097152 kBytes
+[  1170.009] (--) NVIDIA(G0): VideoBIOS: 82.08.77.00.29
+[  1170.009] (II) NVIDIA(G0): Detected PCI Express Link width: 4X
+[  1170.009] (II) NVIDIA(G0): Validated MetaModes:
+[  1170.009] (II) NVIDIA(G0):     "NULL"
+[  1170.009] (II) NVIDIA(G0): Virtual screen size determined to be 640 x 480
+[  1170.009] (WW) NVIDIA(G0): Unable to get display device for DPI computation.
+[  1170.009] (==) NVIDIA(G0): DPI set to (75, 75); computed from built-in default
+[  1170.009] (II) UnloadModule: "nouveau"
+[  1170.009] (II) Unloading nouveau
+[  1170.009] (II) UnloadModule: "fbdev"
+[  1170.010] (II) Unloading fbdev
+[  1170.010] (II) UnloadSubModule: "fbdevhw"
+[  1170.010] (II) Unloading fbdevhw
+[  1170.010] (II) UnloadModule: "vesa"
+[  1170.010] (II) Unloading vesa
+[  1170.024] (==) modeset(0): Backing store enabled
+[  1170.024] (==) modeset(0): Silken mouse enabled
+[  1170.105] (II) modeset(0): Initializing kms color map for depth 24, 8 bpc.
+[  1170.105] (==) modeset(0): DPMS enabled
+[  1170.105] (II) modeset(0): [DRI2] Setup complete
+[  1170.105] (II) modeset(0): [DRI2]   DRI driver: iris
+[  1170.105] (II) modeset(0): [DRI2]   VDPAU driver: va_gl
+[  1170.105] (WW) NVIDIA: Failed to bind sideband socket to
+[  1170.105] (WW) NVIDIA:     '/var/run/nvidia-xdriver-629e9560' Permission denied
+[  1170.105] (II) NVIDIA: Reserving 6144.00 MB of virtual memory for indirect memory
+[  1170.106] (II) NVIDIA:     access.
+[  1170.110] (II) NVIDIA(G0): ACPI: failed to connect to the ACPI event daemon; the daemon
+[  1170.110] (II) NVIDIA(G0):     may not be running or the "AcpidSocketPath" X
+[  1170.110] (II) NVIDIA(G0):     configuration option may not be set correctly.  When the
+[  1170.110] (II) NVIDIA(G0):     ACPI event daemon is available, the NVIDIA X driver will
+[  1170.110] (II) NVIDIA(G0):     try to use it to receive ACPI event notifications.  For
+[  1170.110] (II) NVIDIA(G0):     details, please see the "ConnectToAcpid" and
+[  1170.110] (II) NVIDIA(G0):     "AcpidSocketPath" X configuration options in Appendix B: X
+[  1170.110] (II) NVIDIA(G0):     Config Options in the README.
+[  1170.132] (II) NVIDIA(G0): Setting mode "NULL"
+[  1170.136] (==) NVIDIA(G0): Disabling shared memory pixmaps
+[  1170.136] (==) NVIDIA(G0): Backing store enabled
+[  1170.136] (==) NVIDIA(G0): Silken mouse enabled
+[  1170.136] (==) NVIDIA(G0): DPMS enabled
+[  1170.137] (II) Loading sub module "dri2"
+[  1170.137] (II) LoadModule: "dri2"
+[  1170.137] (II) Module "dri2" already built-in
+[  1170.137] (II) NVIDIA(G0): [DRI2] Setup complete
+[  1170.137] (II) NVIDIA(G0): [DRI2]   VDPAU driver: nvidia
+[  1170.137] (II) Initializing extension Generic Event Extension
+[  1170.137] (II) Initializing extension SHAPE
+[  1170.137] (II) Initializing extension MIT-SHM
+[  1170.137] (II) Initializing extension XInputExtension
+[  1170.137] (II) Initializing extension XTEST
+[  1170.137] (II) Initializing extension BIG-REQUESTS
+[  1170.138] (II) Initializing extension SYNC
+[  1170.138] (II) Initializing extension XKEYBOARD
+[  1170.138] (II) Initializing extension XC-MISC
+[  1170.138] (II) Initializing extension SECURITY
+[  1170.138] (II) Initializing extension XFIXES
+[  1170.138] (II) Initializing extension RENDER
+[  1170.139] (II) Initializing extension RANDR
+[  1170.139] (II) Initializing extension COMPOSITE
+[  1170.139] (II) Initializing extension DAMAGE
+[  1170.139] (II) Initializing extension MIT-SCREEN-SAVER
+[  1170.140] (II) Initializing extension DOUBLE-BUFFER
+[  1170.140] (II) Initializing extension RECORD
+[  1170.140] (II) Initializing extension DPMS
+[  1170.140] (II) Initializing extension Present
+[  1170.140] (II) Initializing extension DRI3
+[  1170.140] (II) Initializing extension X-Resource
+[  1170.140] (II) Initializing extension XVideo
+[  1170.140] (II) Initializing extension XVideo-MotionCompensation
+[  1170.140] (II) Initializing extension SELinux
+[  1170.140] (II) SELinux: Disabled on system
+[  1170.140] (II) Initializing extension GLX
+[  1170.141] (II) Initializing extension GLX
+[  1170.141] (II) Indirect GLX disabled.
+[  1170.148] (II) AIGLX: Loaded and initialized iris
+[  1170.148] (II) GLX: Initialized DRI2 GL provider for screen 0
+[  1170.148] (II) Initializing extension XFree86-VidModeExtension
+[  1170.148] (II) Initializing extension XFree86-DGA
+[  1170.148] (II) Initializing extension XFree86-DRI
+[  1170.148] (II) Initializing extension DRI2
+[  1170.148] (II) Initializing extension NV-GLX
+[  1170.148] (II) Initializing extension NV-CONTROL
+[  1170.149] (II) modeset(0): Damage tracking initialized
+[  1170.149] (II) modeset(0): Setting screen physical size to 361 x 203
+[  1170.199] (II) config/udev: Adding input device Acer Wireless Radio Control (/dev/input/event9)
+[  1170.199] (**) Acer Wireless Radio Control: Applying InputClass "libinput keyboard catchall"
+[  1170.199] (II) LoadModule: "libinput"
+[  1170.199] (II) Loading /usr/lib/xorg/modules/input/libinput_drv.so
+[  1170.201] (II) Module libinput: vendor="X.Org Foundation"
+[  1170.201] 	compiled for 1.21.1.7, module version = 1.3.0
+[  1170.201] 	Module class: X.Org XInput Driver
+[  1170.201] 	ABI class: X.Org XInput driver, version 24.4
+[  1170.201] (II) Using input driver 'libinput' for 'Acer Wireless Radio Control'
+[  1170.201] (II) systemd-logind: got fd for /dev/input/event9 13:73 fd 44 paused 0
+[  1170.201] (**) Acer Wireless Radio Control: always reports core events
+[  1170.201] (**) Option "Device" "/dev/input/event9"
+[  1170.204] (II) event9  - Acer Wireless Radio Control: is tagged by udev as: Keyboard
+[  1170.204] (II) event9  - Acer Wireless Radio Control: device is a keyboard
+[  1170.205] (II) event9  - Acer Wireless Radio Control: device removed
+[  1170.205] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/10251229:00/input/input24/event9"
+[  1170.205] (II) XINPUT: Adding extended input device "Acer Wireless Radio Control" (type: KEYBOARD, id 6)
+[  1170.205] (**) Option "xkb_model" "pc105"
+[  1170.205] (**) Option "xkb_layout" "us"
+[  1170.206] (II) event9  - Acer Wireless Radio Control: is tagged by udev as: Keyboard
+[  1170.206] (II) event9  - Acer Wireless Radio Control: device is a keyboard
+[  1170.207] (II) config/udev: Adding input device Power Button (/dev/input/event3)
+[  1170.207] (**) Power Button: Applying InputClass "libinput keyboard catchall"
+[  1170.207] (II) Using input driver 'libinput' for 'Power Button'
+[  1170.207] (II) systemd-logind: got fd for /dev/input/event3 13:67 fd 47 paused 0
+[  1170.207] (**) Power Button: always reports core events
+[  1170.207] (**) Option "Device" "/dev/input/event3"
+[  1170.208] (II) event3  - Power Button: is tagged by udev as: Keyboard
+[  1170.208] (II) event3  - Power Button: device is a keyboard
+[  1170.208] (II) event3  - Power Button: device removed
+[  1170.208] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/LNXPWRBN:00/input/input3/event3"
+[  1170.209] (II) XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 7)
+[  1170.209] (**) Option "xkb_model" "pc105"
+[  1170.209] (**) Option "xkb_layout" "us"
+[  1170.210] (II) event3  - Power Button: is tagged by udev as: Keyboard
+[  1170.210] (II) event3  - Power Button: device is a keyboard
+[  1170.211] (II) config/udev: Adding input device Video Bus (/dev/input/event7)
+[  1170.211] (**) Video Bus: Applying InputClass "libinput keyboard catchall"
+[  1170.211] (II) Using input driver 'libinput' for 'Video Bus'
+[  1170.211] (II) systemd-logind: got fd for /dev/input/event7 13:71 fd 48 paused 0
+[  1170.211] (**) Video Bus: always reports core events
+[  1170.211] (**) Option "Device" "/dev/input/event7"
+[  1170.212] (II) event7  - Video Bus: is tagged by udev as: Keyboard
+[  1170.212] (II) event7  - Video Bus: device is a keyboard
+[  1170.212] (II) event7  - Video Bus: device removed
+[  1170.212] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input22/event7"
+[  1170.212] (II) XINPUT: Adding extended input device "Video Bus" (type: KEYBOARD, id 8)
+[  1170.213] (**) Option "xkb_model" "pc105"
+[  1170.213] (**) Option "xkb_layout" "us"
+[  1170.214] (II) event7  - Video Bus: is tagged by udev as: Keyboard
+[  1170.214] (II) event7  - Video Bus: device is a keyboard
+[  1170.214] (II) config/udev: Adding input device Lid Switch (/dev/input/event0)
+[  1170.214] (II) No input driver specified, ignoring this device.
+[  1170.214] (II) This device may have been added with another device file.
+[  1170.215] (II) config/udev: Adding input device Video Bus (/dev/input/event8)
+[  1170.215] (**) Video Bus: Applying InputClass "libinput keyboard catchall"
+[  1170.215] (II) Using input driver 'libinput' for 'Video Bus'
+[  1170.216] (II) systemd-logind: got fd for /dev/input/event8 13:72 fd 49 paused 0
+[  1170.216] (**) Video Bus: always reports core events
+[  1170.216] (**) Option "Device" "/dev/input/event8"
+[  1170.217] (II) event8  - Video Bus: is tagged by udev as: Keyboard
+[  1170.217] (II) event8  - Video Bus: device is a keyboard
+[  1170.218] (II) event8  - Video Bus: device removed
+[  1170.218] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:34/LNXVIDEO:01/input/input23/event8"
+[  1170.218] (II) XINPUT: Adding extended input device "Video Bus" (type: KEYBOARD, id 9)
+[  1170.218] (**) Option "xkb_model" "pc105"
+[  1170.218] (**) Option "xkb_layout" "us"
+[  1170.219] (II) event8  - Video Bus: is tagged by udev as: Keyboard
+[  1170.219] (II) event8  - Video Bus: device is a keyboard
+[  1170.220] (II) config/udev: Adding input device Power Button (/dev/input/event2)
+[  1170.220] (**) Power Button: Applying InputClass "libinput keyboard catchall"
+[  1170.220] (II) Using input driver 'libinput' for 'Power Button'
+[  1170.221] (II) systemd-logind: got fd for /dev/input/event2 13:66 fd 50 paused 0
+[  1170.221] (**) Power Button: always reports core events
+[  1170.221] (**) Option "Device" "/dev/input/event2"
+[  1170.222] (II) event2  - Power Button: is tagged by udev as: Keyboard
+[  1170.222] (II) event2  - Power Button: device is a keyboard
+[  1170.222] (II) event2  - Power Button: device removed
+[  1170.222] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input2/event2"
+[  1170.222] (II) XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 10)
+[  1170.222] (**) Option "xkb_model" "pc105"
+[  1170.222] (**) Option "xkb_layout" "us"
+[  1170.223] (II) event2  - Power Button: is tagged by udev as: Keyboard
+[  1170.223] (II) event2  - Power Button: device is a keyboard
+[  1170.224] (II) config/udev: Adding input device Sleep Button (/dev/input/event1)
+[  1170.224] (**) Sleep Button: Applying InputClass "libinput keyboard catchall"
+[  1170.224] (II) Using input driver 'libinput' for 'Sleep Button'
+[  1170.225] (II) systemd-logind: got fd for /dev/input/event1 13:65 fd 51 paused 0
+[  1170.225] (**) Sleep Button: always reports core events
+[  1170.225] (**) Option "Device" "/dev/input/event1"
+[  1170.226] (II) event1  - Sleep Button: is tagged by udev as: Keyboard
+[  1170.226] (II) event1  - Sleep Button: device is a keyboard
+[  1170.226] (II) event1  - Sleep Button: device removed
+[  1170.226] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0E:00/input/input1/event1"
+[  1170.226] (II) XINPUT: Adding extended input device "Sleep Button" (type: KEYBOARD, id 11)
+[  1170.226] (**) Option "xkb_model" "pc105"
+[  1170.226] (**) Option "xkb_layout" "us"
+[  1170.227] (II) event1  - Sleep Button: is tagged by udev as: Keyboard
+[  1170.227] (II) event1  - Sleep Button: device is a keyboard
+[  1170.229] (II) config/udev: Adding input device Logitech Wireless Mouse PID:4022 (/dev/input/event6)
+[  1170.229] (**) Logitech Wireless Mouse PID:4022: Applying InputClass "libinput pointer catchall"
+[  1170.229] (II) Using input driver 'libinput' for 'Logitech Wireless Mouse PID:4022'
+[  1170.230] (II) systemd-logind: got fd for /dev/input/event6 13:70 fd 52 paused 0
+[  1170.230] (**) Logitech Wireless Mouse PID:4022: always reports core events
+[  1170.230] (**) Option "Device" "/dev/input/event6"
+[  1170.232] (II) event6  - Logitech Wireless Mouse PID:4022: is tagged by udev as: Mouse
+[  1170.232] (II) event6  - Logitech Wireless Mouse PID:4022: device is a pointer
+[  1170.232] (II) event6  - Logitech Wireless Mouse PID:4022: device removed
+[  1170.232] (II) libinput: Logitech Wireless Mouse PID:4022: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.232] (II) libinput: Logitech Wireless Mouse PID:4022: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.232] (II) libinput: Logitech Wireless Mouse PID:4022: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.232] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3:1.1/0003:046D:C534.0002/0003:046D:4022.0004/input/input21/event6"
+[  1170.232] (II) XINPUT: Adding extended input device "Logitech Wireless Mouse PID:4022" (type: MOUSE, id 12)
+[  1170.232] (**) Option "AccelerationScheme" "none"
+[  1170.232] (**) Logitech Wireless Mouse PID:4022: (accel) selected scheme none/0
+[  1170.232] (**) Logitech Wireless Mouse PID:4022: (accel) acceleration factor: 2.000
+[  1170.232] (**) Logitech Wireless Mouse PID:4022: (accel) acceleration threshold: 4
+[  1170.234] (II) event6  - Logitech Wireless Mouse PID:4022: is tagged by udev as: Mouse
+[  1170.234] (II) event6  - Logitech Wireless Mouse PID:4022: device is a pointer
+[  1170.236] (II) config/udev: Adding input device Logitech Wireless Mouse PID:4022 (/dev/input/mouse0)
+[  1170.236] (II) No input driver specified, ignoring this device.
+[  1170.236] (II) This device may have been added with another device file.
+[  1170.237] (II) config/udev: Adding input device Logitech Wireless Keyboard PID:4023 (/dev/input/event5)
+[  1170.237] (**) Logitech Wireless Keyboard PID:4023: Applying InputClass "libinput keyboard catchall"
+[  1170.237] (II) Using input driver 'libinput' for 'Logitech Wireless Keyboard PID:4023'
+[  1170.237] (II) systemd-logind: got fd for /dev/input/event5 13:69 fd 53 paused 0
+[  1170.237] (**) Logitech Wireless Keyboard PID:4023: always reports core events
+[  1170.237] (**) Option "Device" "/dev/input/event5"
+[  1170.239] (II) event5  - Logitech Wireless Keyboard PID:4023: is tagged by udev as: Keyboard
+[  1170.239] (II) event5  - Logitech Wireless Keyboard PID:4023: device is a keyboard
+[  1170.239] (II) event5  - Logitech Wireless Keyboard PID:4023: device removed
+[  1170.239] (II) libinput: Logitech Wireless Keyboard PID:4023: needs a virtual subdevice
+[  1170.239] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3:1.1/0003:046D:C534.0002/0003:046D:4023.0003/input/input20/event5"
+[  1170.239] (II) XINPUT: Adding extended input device "Logitech Wireless Keyboard PID:4023" (type: MOUSE, id 13)
+[  1170.240] (**) Option "AccelerationScheme" "none"
+[  1170.240] (**) Logitech Wireless Keyboard PID:4023: (accel) selected scheme none/0
+[  1170.240] (**) Logitech Wireless Keyboard PID:4023: (accel) acceleration factor: 2.000
+[  1170.240] (**) Logitech Wireless Keyboard PID:4023: (accel) acceleration threshold: 4
+[  1170.241] (II) event5  - Logitech Wireless Keyboard PID:4023: is tagged by udev as: Keyboard
+[  1170.241] (II) event5  - Logitech Wireless Keyboard PID:4023: device is a keyboard
+[  1170.242] (II) config/udev: Adding input device ELAN0501:01 04F3:3060 Mouse (/dev/input/event10)
+[  1170.242] (**) ELAN0501:01 04F3:3060 Mouse: Applying InputClass "libinput pointer catchall"
+[  1170.242] (II) Using input driver 'libinput' for 'ELAN0501:01 04F3:3060 Mouse'
+[  1170.243] (II) systemd-logind: got fd for /dev/input/event10 13:74 fd 54 paused 0
+[  1170.243] (**) ELAN0501:01 04F3:3060 Mouse: always reports core events
+[  1170.243] (**) Option "Device" "/dev/input/event10"
+[  1170.245] (II) event10 - ELAN0501:01 04F3:3060 Mouse: is tagged by udev as: Mouse Pointingstick
+[  1170.246] (II) event10 - ELAN0501:01 04F3:3060 Mouse: device is a pointer
+[  1170.247] (II) event10 - ELAN0501:01 04F3:3060 Mouse: device removed
+[  1170.247] (II) libinput: ELAN0501:01 04F3:3060 Mouse: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.247] (II) libinput: ELAN0501:01 04F3:3060 Mouse: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.247] (II) libinput: ELAN0501:01 04F3:3060 Mouse: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.247] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-5/i2c-ELAN0501:01/0018:04F3:3060.0005/input/input29/event10"
+[  1170.247] (II) XINPUT: Adding extended input device "ELAN0501:01 04F3:3060 Mouse" (type: MOUSE, id 14)
+[  1170.248] (**) Option "AccelerationScheme" "none"
+[  1170.248] (**) ELAN0501:01 04F3:3060 Mouse: (accel) selected scheme none/0
+[  1170.248] (**) ELAN0501:01 04F3:3060 Mouse: (accel) acceleration factor: 2.000
+[  1170.248] (**) ELAN0501:01 04F3:3060 Mouse: (accel) acceleration threshold: 4
+[  1170.249] (II) event10 - ELAN0501:01 04F3:3060 Mouse: is tagged by udev as: Mouse Pointingstick
+[  1170.250] (II) event10 - ELAN0501:01 04F3:3060 Mouse: device is a pointer
+[  1170.252] (II) config/udev: Adding input device ELAN0501:01 04F3:3060 Mouse (/dev/input/mouse1)
+[  1170.252] (II) No input driver specified, ignoring this device.
+[  1170.252] (II) This device may have been added with another device file.
+[  1170.253] (II) config/udev: Adding input device ELAN0501:01 04F3:3060 Touchpad (/dev/input/event11)
+[  1170.253] (**) ELAN0501:01 04F3:3060 Touchpad: Applying InputClass "libinput touchpad catchall"
+[  1170.253] (II) Using input driver 'libinput' for 'ELAN0501:01 04F3:3060 Touchpad'
+[  1170.253] (II) systemd-logind: got fd for /dev/input/event11 13:75 fd 55 paused 0
+[  1170.253] (**) ELAN0501:01 04F3:3060 Touchpad: always reports core events
+[  1170.253] (**) Option "Device" "/dev/input/event11"
+[  1170.255] (II) event11 - ELAN0501:01 04F3:3060 Touchpad: is tagged by udev as: Touchpad
+[  1170.257] (II) event11 - ELAN0501:01 04F3:3060 Touchpad: device is a touchpad
+[  1170.257] (II) event11 - ELAN0501:01 04F3:3060 Touchpad: device removed
+[  1170.257] (II) libinput: ELAN0501:01 04F3:3060 Touchpad: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.257] (II) libinput: ELAN0501:01 04F3:3060 Touchpad: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.257] (II) libinput: ELAN0501:01 04F3:3060 Touchpad: Step value 0 was provided, libinput Fallback acceleration function is used.
+[  1170.258] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-5/i2c-ELAN0501:01/0018:04F3:3060.0005/input/input31/event11"
+[  1170.258] (II) XINPUT: Adding extended input device "ELAN0501:01 04F3:3060 Touchpad" (type: TOUCHPAD, id 15)
+[  1170.259] (**) Option "AccelerationScheme" "none"
+[  1170.259] (**) ELAN0501:01 04F3:3060 Touchpad: (accel) selected scheme none/0
+[  1170.260] (**) ELAN0501:01 04F3:3060 Touchpad: (accel) acceleration factor: 2.000
+[  1170.260] (**) ELAN0501:01 04F3:3060 Touchpad: (accel) acceleration threshold: 4
+[  1170.261] (II) event11 - ELAN0501:01 04F3:3060 Touchpad: is tagged by udev as: Touchpad
+[  1170.263] (II) event11 - ELAN0501:01 04F3:3060 Touchpad: device is a touchpad
+[  1170.264] (II) config/udev: Adding input device ELAN0501:01 04F3:3060 Touchpad (/dev/input/mouse2)
+[  1170.264] (II) No input driver specified, ignoring this device.
+[  1170.264] (II) This device may have been added with another device file.
+[  1170.265] (II) config/udev: Adding input device HDA Intel PCH Front Headphone (/dev/input/event13)
+[  1170.265] (II) No input driver specified, ignoring this device.
+[  1170.265] (II) This device may have been added with another device file.
+[  1170.265] (II) config/udev: Adding input device HDA Intel PCH HDMI/DP,pcm=3 (/dev/input/event14)
+[  1170.265] (II) No input driver specified, ignoring this device.
+[  1170.265] (II) This device may have been added with another device file.
+[  1170.266] (II) config/udev: Adding input device HDA Intel PCH HDMI/DP,pcm=7 (/dev/input/event15)
+[  1170.266] (II) No input driver specified, ignoring this device.
+[  1170.266] (II) This device may have been added with another device file.
+[  1170.266] (II) config/udev: Adding input device HDA Intel PCH HDMI/DP,pcm=8 (/dev/input/event16)
+[  1170.266] (II) No input driver specified, ignoring this device.
+[  1170.266] (II) This device may have been added with another device file.
+[  1170.267] (II) config/udev: Adding input device AT Translated Set 2 keyboard (/dev/input/event4)
+[  1170.267] (**) AT Translated Set 2 keyboard: Applying InputClass "libinput keyboard catchall"
+[  1170.267] (II) Using input driver 'libinput' for 'AT Translated Set 2 keyboard'
+[  1170.268] (II) systemd-logind: got fd for /dev/input/event4 13:68 fd 56 paused 0
+[  1170.268] (**) AT Translated Set 2 keyboard: always reports core events
+[  1170.268] (**) Option "Device" "/dev/input/event4"
+[  1170.269] (II) event4  - AT Translated Set 2 keyboard: is tagged by udev as: Keyboard
+[  1170.269] (II) event4  - AT Translated Set 2 keyboard: device is a keyboard
+[  1170.270] (II) event4  - AT Translated Set 2 keyboard: device removed
+[  1170.270] (**) Option "config_info" "udev:/sys/devices/platform/i8042/serio0/input/input4/event4"
+[  1170.270] (II) XINPUT: Adding extended input device "AT Translated Set 2 keyboard" (type: KEYBOARD, id 16)
+[  1170.270] (**) Option "xkb_model" "pc105"
+[  1170.270] (**) Option "xkb_layout" "us"
+[  1170.272] (II) event4  - AT Translated Set 2 keyboard: is tagged by udev as: Keyboard
+[  1170.272] (II) event4  - AT Translated Set 2 keyboard: device is a keyboard
+[  1170.276] (II) config/udev: Adding input device Acer WMI hotkeys (/dev/input/event12)
+[  1170.276] (**) Acer WMI hotkeys: Applying InputClass "libinput keyboard catchall"
+[  1170.276] (II) Using input driver 'libinput' for 'Acer WMI hotkeys'
+[  1170.276] (II) systemd-logind: got fd for /dev/input/event12 13:76 fd 57 paused 0
+[  1170.276] (**) Acer WMI hotkeys: always reports core events
+[  1170.276] (**) Option "Device" "/dev/input/event12"
+[  1170.277] (II) event12 - Acer WMI hotkeys: is tagged by udev as: Keyboard
+[  1170.277] (II) event12 - Acer WMI hotkeys: device is a keyboard
+[  1170.277] (II) event12 - Acer WMI hotkeys: device removed
+[  1170.277] (**) Option "config_info" "udev:/sys/devices/virtual/input/input28/event12"
+[  1170.277] (II) XINPUT: Adding extended input device "Acer WMI hotkeys" (type: KEYBOARD, id 17)
+[  1170.277] (**) Option "xkb_model" "pc105"
+[  1170.278] (**) Option "xkb_layout" "us"
+[  1170.278] (II) event12 - Acer WMI hotkeys: is tagged by udev as: Keyboard
+[  1170.278] (II) event12 - Acer WMI hotkeys: device is a keyboard
+[  1170.304] (**) Logitech Wireless Keyboard PID:4023: Applying InputClass "libinput keyboard catchall"
+[  1170.304] (II) Using input driver 'libinput' for 'Logitech Wireless Keyboard PID:4023'
+[  1170.304] (II) systemd-logind: returning pre-existing fd for /dev/input/event5 13:69
+[  1170.304] (**) Logitech Wireless Keyboard PID:4023: always reports core events
+[  1170.304] (**) Option "Device" "/dev/input/event5"
+[  1170.304] (II) libinput: Logitech Wireless Keyboard PID:4023: is a virtual subdevice
+[  1170.304] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3:1.1/0003:046D:C534.0002/0003:046D:4023.0003/input/input20/event5"
+[  1170.304] (II) XINPUT: Adding extended input device "Logitech Wireless Keyboard PID:4023" (type: KEYBOARD, id 18)
+[  1170.304] (**) Option "xkb_model" "pc105"
+[  1170.304] (**) Option "xkb_layout" "us"
+[  1170.373] (II) modeset(0): EDID vendor "BOE", prod id 1650
+[  1170.373] (II) modeset(0): Printing DDC gathered Modelines:
+[  1170.373] (II) modeset(0): Modeline "1366x768"x0.0   72.30  1366 1414 1446 1526  768 771 777 790 +hsync -vsync (47.4 kHz eP)
+[  1170.390] (II) modeset(0): EDID vendor "BOE", prod id 1650
+[  1170.390] (II) modeset(0): Printing DDC gathered Modelines:
+[  1170.390] (II) modeset(0): Modeline "1366x768"x0.0   72.30  1366 1414 1446 1526  768 771 777 790 +hsync -vsync (47.4 kHz eP)
+[  1170.407] (II) modeset(0): EDID vendor "BOE", prod id 1650
+[  1170.407] (II) modeset(0): Printing DDC gathered Modelines:
+[  1170.407] (II) modeset(0): Modeline "1366x768"x0.0   72.30  1366 1414 1446 1526  768 771 777 790 +hsync -vsync (47.4 kHz eP)
+[  1170.423] (II) modeset(0): EDID vendor "BOE", prod id 1650
+[  1170.424] (II) modeset(0): Printing DDC gathered Modelines:
+[  1170.424] (II) modeset(0): Modeline "1366x768"x0.0   72.30  1366 1414 1446 1526  768 771 777 790 +hsync -vsync (47.4 kHz eP)
+[  1170.440] (II) modeset(0): EDID vendor "BOE", prod id 1650
+[  1170.440] (II) modeset(0): Printing DDC gathered Modelines:
+[  1170.440] (II) modeset(0): Modeline "1366x768"x0.0   72.30  1366 1414 1446 1526  768 771 777 790 +hsync -vsync (47.4 kHz eP)
+[  1170.712] (II) modeset(0): Allocate new frame buffer 320x200 stride
+[  1170.723] (II) modeset(0): Allocate new frame buffer 1366x768 stride
+[  1210.752] (**) Option "fd" "44"
+[  1210.752] (II) event9  - Acer Wireless Radio Control: device removed
+[  1210.753] (**) Option "fd" "47"
+[  1210.753] (II) event3  - Power Button: device removed
+[  1210.753] (**) Option "fd" "48"
+[  1210.753] (II) event7  - Video Bus: device removed
+[  1210.753] (**) Option "fd" "49"
+[  1210.754] (II) event8  - Video Bus: device removed
+[  1210.754] (**) Option "fd" "50"
+[  1210.754] (II) event2  - Power Button: device removed
+[  1210.755] (**) Option "fd" "51"
+[  1210.755] (II) event1  - Sleep Button: device removed
+[  1210.755] (**) Option "fd" "52"
+[  1210.756] (II) event6  - Logitech Wireless Mouse PID:4022: device removed
+[  1210.756] (**) Option "fd" "53"
+[  1210.756] (**) Option "fd" "54"
+[  1210.756] (II) event10 - ELAN0501:01 04F3:3060 Mouse: device removed
+[  1210.756] (**) Option "fd" "55"
+[  1210.756] (II) event11 - ELAN0501:01 04F3:3060 Touchpad: device removed
+[  1210.757] (**) Option "fd" "56"
+[  1210.757] (II) event4  - AT Translated Set 2 keyboard: device removed
+[  1210.757] (**) Option "fd" "57"
+[  1210.757] (II) event12 - Acer WMI hotkeys: device removed
+[  1210.757] (**) Option "fd" "53"
+[  1210.757] (II) event5  - Logitech Wireless Keyboard PID:4023: device removed
+[  1210.757] (II) AIGLX: Suspending AIGLX clients for VT switch
+[  1210.813] (II) systemd-logind: got pause for 13:68
+[  1210.813] (II) systemd-logind: got pause for 13:66
+[  1210.813] (II) systemd-logind: got pause for 13:74
+[  1210.813] (II) systemd-logind: got pause for 13:76
+[  1210.813] (II) systemd-logind: got pause for 13:65
+[  1210.814] (II) systemd-logind: got pause for 13:70
+[  1210.814] (II) systemd-logind: got pause for 13:73
+[  1210.814] (II) systemd-logind: got pause for 13:72
+[  1210.814] (II) systemd-logind: got pause for 13:69
+[  1210.814] (II) systemd-logind: got pause for 13:75
+[  1210.814] (II) systemd-logind: got pause for 13:67
+[  1210.814] (II) systemd-logind: got pause for 13:71
+[  1514.676] (EE) Failed to open authorization file "/run/user/1000/gdm/Xauthority": No such file or directory
+[  1514.694] (II) UnloadModule: "libinput"
+[  1514.694] (II) systemd-logind: not releasing fd for 13:69, still in use
+[  1514.694] (II) UnloadModule: "libinput"
+[  1514.694] (II) systemd-logind: releasing fd for 13:76
+[  1514.729] (II) UnloadModule: "libinput"
+[  1514.729] (II) systemd-logind: releasing fd for 13:68
+[  1514.855] (EE) systemd-logind: failed to release device: Message recipient disconnected from message bus without replying
+[  1514.855] (II) UnloadModule: "libinput"
+[  1514.855] (II) systemd-logind: releasing fd for 13:75
+[  1514.868] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (system-systemd\x2dfsck.slice has 'stop' job queued, but 'start' is included in transaction).
+[  1514.868] (II) UnloadModule: "libinput"
+[  1514.868] (II) systemd-logind: releasing fd for 13:74
+[  1514.870] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (local-fs-pre.target has 'stop' job queued, but 'start' is included in transaction).
+[  1514.870] (II) UnloadModule: "libinput"
+[  1514.870] (II) systemd-logind: releasing fd for 13:69
+[  1514.871] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (usr-local.mount has 'stop' job queued, but 'start' is included in transaction).
+[  1514.871] (II) UnloadModule: "libinput"
+[  1514.871] (II) systemd-logind: releasing fd for 13:70
+[  1514.872] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (root.mount has 'stop' job queued, but 'start' is included in transaction).
+[  1514.872] (II) UnloadModule: "libinput"
+[  1514.872] (II) systemd-logind: releasing fd for 13:65
+[  1514.873] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (var-lib-AccountsService.mount has 'stop' job queued, but 'start' is included in transaction).
+[  1514.873] (II) UnloadModule: "libinput"
+[  1514.873] (II) systemd-logind: releasing fd for 13:66
+[  1514.874] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (var-lib-NetworkManager.mount has 'stop' job queued, but 'start' is included in transaction).
+[  1514.874] (II) UnloadModule: "libinput"
+[  1514.874] (II) systemd-logind: releasing fd for 13:72
+[  1514.875] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (var-lib-NetworkManager.mount has 'stop' job queued, but 'start' is included in transaction).
+[  1514.875] (II) UnloadModule: "libinput"
+[  1514.876] (II) systemd-logind: releasing fd for 13:71
+[  1514.876] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (systemd-remount-fs.service has 'stop' job queued, but 'start' is included in transaction).
+[  1514.876] (II) UnloadModule: "libinput"
+[  1514.877] (II) systemd-logind: releasing fd for 13:67
+[  1514.877] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (cryptsetup.target has 'stop' job queued, but 'start' is included in transaction).
+[  1514.878] (II) UnloadModule: "libinput"
+[  1514.878] (II) systemd-logind: releasing fd for 13:73
+[  1514.879] (EE) systemd-logind: failed to release device: Transaction for systemd-logind.service/start is destructive (var-lib.mount has 'stop' job queued, but 'start' is included in transaction).
+[  1514.889] (II) NVIDIA(GPU-0): Deleting GPU-0
+[  1514.893] (EE) systemd-logind: ReleaseControl failed: Transaction for systemd-logind.service/start is destructive (systemd-fsck@dev-disk-by\x2duuid-551A\x2d09F1.service has 'stop' job queued, but 'start' is included in transaction).
+[  1514.893] (II) Server terminated successfully (0). Closing log file.
