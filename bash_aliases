@@ -470,3 +470,4 @@ underscore() {
 # grub-efi-amd64 grub-pc-bin
 
 alias zsnap_large='zfs list -o used,name -t snapshot | sort -h | tail' 
+alias conf="git --git-dir=$HOME/.conf.git --work-tree=$HOME"
